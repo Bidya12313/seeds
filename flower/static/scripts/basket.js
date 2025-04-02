@@ -1,0 +1,89 @@
+const container = document.getElementById("basket");
+let basketItems = JSON.parse(localStorage.getItem("basket"));
+const price = document.getElementById("price");
+let totalprice = 0;
+console.log(basketItems);
+function updateBasket() {
+  basketItems = JSON.parse(localStorage.getItem("basket"));
+  if(basketItems.length === 0){
+    document.getElementById("no-items").style.display = "block";
+      document.getElementById("continue-btn").style.display = "none";
+      document.getElementById("buy-btn").style.display = "none";
+    document.getElementById("sum-text").style.display = "none";
+    container.innerHTML = "";
+  }
+  else{
+    document.getElementById("no-items").style.display = "none";
+      document.getElementById("continue-btn").style.display = "block";
+      document.getElementById("buy-btn").style.display = "block";
+      document.getElementById("sum-text").style.display = "flex";
+    container.innerHTML=`<tr>
+    <th>
+    <img src="../static/images/material-symbols_delete-outline.svg" width="30px"/>
+    </th>
+    <th>
+    Фото
+    </th>
+    <th>
+    Назва
+    </th>
+    <th>
+    Ціна/шт
+    </th>
+    <th>
+    К-сть
+    </th>
+    <th>
+    Заг.ціна
+    </th>
+    </tr>`;
+    totalprice = 0;
+    basketItems.map((item) => {
+      totalprice +=item.price * item.quantity;
+      console.log(totalprice);
+      container.innerHTML += `
+      <tr id="row-${item.name}">
+      <td>
+      <button id="${
+        item.name
+        }"  class="delete-item" onclick="deleteRow(this)">
+        
+        <img src="../static/images/material-symbols_delete-outline.svg" width="30px"/>
+        </button>
+        </td>
+        <td>
+        <img class="table-img" src="../static/${item.image}"/>
+        </td>
+        <td>
+        ${item.name}
+        </td>
+        <td>
+        ${item.price}
+        </td>
+        <td>
+        ${item.quantity}
+        </td>
+        <td>
+        ${item.price * item.quantity}
+        </td>
+        </tr>`;
+      });
+      price.innerText = totalprice;
+    }
+  }
+    updateBasket();
+function deleteRow(button) {
+  console.log(button);
+  basketItems = basketItems.filter((item) => item.name != button.id);
+  localStorage.setItem("basket", JSON.stringify(basketItems));
+  button.closest("tr").remove();
+  updateBasket();
+}
+
+const buy = document.querySelectorAll(".tobuy");
+buy.forEach((item)=>{
+    item.addEventListener('click',()=>{
+      addToBasket('name', 'images/dobryva-cat.jpg', 30, 2);
+      updateBasket();
+    })
+  })

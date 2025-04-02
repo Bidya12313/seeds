@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/styles/style.css">
+    <link rel="stylesheet" href="../static/styles/productpage.css">
+    <link rel="stylesheet" href="../static/styles/products.css">
+    <link rel="stylesheet" href="../static/styles/header.css">
+    <link rel="stylesheet" href="../static/styles/popout.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+    <title>"Семена"</title>
+</head>
+
+<body>
+    <div class="top">
+        <button id="menu-toggle">☰</button> 
+        <div class="soc-media">
+            <div class="popover-container">
+                <img src="../static/images/phone.svg" width="40px" class="soc-media-img popover-trigger" />
+                <div class="popover">
+                    (093) 823-68-08
+                    <br>
+                    (066) 823-68-08
+                </div>
+            </div>
+            <div class="popover-container">
+                <img src="../static/images/basil_viber-outline.svg" width="40px" class="soc-media-img popover-trigger" />
+                <div class="popover">
+                    (093) 823-68-08
+                </div>
+            </div>
+            <a href="https://www.facebook.com/Vita.Trayno/">
+                <img src="../static/images/facebook.svg" width="35px" class="soc-media-img" />
+            </a>
+            <a href="https://www.youtube.com/@vita_trayno">
+                <img src="../static/images/youtube.svg" width="40px" class="soc-media-img" />
+            </a>
+            <a href="https://www.instagram.com/vitatrayno">
+                <img src="../static/images/mdi_instagram.svg" width="40px" class="soc-media-img" />
+            </a>
+            <div class="popover-container">
+                <img src="../static/images/emsil.svg" width="40px" class="soc-media-img popover-trigger" />
+                <div class="popover">
+                    traynovita@gmail.com
+                    <br>
+                    artemtraino@gmail.com
+                    <br>
+                    vita@seeds.dp.ua
+                </div>
+            </div>
+        </div>
+        <a href="index.html">
+            <img src="../static/images/Logo-seedsua.png" alt="Логотип Інтернет-магазин 'Семена'" class="logo" />
+        </a>
+        <div class="cart-container">
+            <a href="likelist.html">
+                <button class="cart-btn">
+                    <img src="../static/images/heart.svg" width="25px" height="30px" />
+                </button>
+            </a>
+            <div class="cart-text">
+                <p>Список побажань</p>
+            </div>
+            <a href="basket.html">
+                <button class="cart-btn">
+                    <img src="../static/images/cart-svgrepo-com (1).svg" width="30px" height="30px" />
+                </button>
+            </a>
+            <div class="cart-text">
+                <p>Корзина</p>
+            </div>
+        </div>
+    </div>
+    <div class="menu">
+        <ul  id="menu" class="menu-list">
+            <button id="menu-close">X</button>
+            <li class="menu-list-el">
+                <a class="el-a" href="index.html">
+                    Головна
+                </a>
+            </li>
+            <li class="menu-list-el">
+
+                <div class="dropdown" onmouseenter="showDropDown()" onmouseleave="hideDropDown()">
+                    <a class="el-a" href="categories.html">
+                        Каталог
+                        <div class="arr">
+                            ▼
+                        </div>
+                    </a>
+                    <ul id="categories-dropdown" class="cat-dropdown">
+                    </ul>
+                </div>
+            </li>
+            <li class="menu-list-el">
+                <a class="el-a" href="index.html#contacts">
+                    Контакти
+                </a>
+            </li>
+            <li class="menu-list-el">
+                <a class="el-a" href="reviews.html">
+                    Відгуки
+                </a>
+            </li>
+            <li class="menu-list-el">
+                <a class="el-a" href="index.html#delivery">
+                    Доставка та оплата
+                </a>
+            </li>
+            <li class="menu-list-el">
+                <a class="el-a" href="garantee.html">
+                    Гарантії та возврат
+                </a>
+            </li>
+            <li class="no-show-full">
+                <a href="likelist.html">
+                    <button class="cart-btn">
+                        <img src="../static/images/heart.svg" width="25px" height="30px" />
+                    </button>
+                </a>
+                <a href="basket.html">
+                    <button class="cart-btn">
+                        <img src="../static/images/cart-svgrepo-com (1).svg" width="30px" height="30px" />
+                    </button>
+                </a>
+            </li>
+            <li class="no-show-full">
+                <div class="popover-container">
+                    <img src="../static/images/phone.svg" width="40px" class="soc-media-img popover-trigger" />
+                    <div class="popover">
+                        (093) 823-68-08
+                        <br>
+                        (066) 823-68-08
+                    </div>
+                </div>
+            </li>
+            <li class="no-show-full">
+                <div class="popover-container">
+                    <img src="../static/images/basil_viber-outline.svg" width="40px" class="soc-media-img popover-trigger" />
+                    <div class="popover">
+                        (093) 823-68-08
+                    </div>
+                </div>
+            </li>
+            <li class="no-show-full">
+                <a href="https://www.facebook.com/Vita.Trayno/">
+                    <img src="../static/images/facebook.svg" width="35px" class="soc-media-img" />
+                </a>
+            </li>
+            <li class="no-show-full">
+                <a href="https://www.youtube.com/@vita_trayno">
+                    <img src="../static/images/youtube.svg" width="40px" class="soc-media-img" />
+                </a>
+            </li>
+            <li class="no-show-full">
+                <a href="https://www.instagram.com/vitatrayno">
+                    <img src="../static/images/mdi_instagram.svg" width="40px" class="soc-media-img" />
+                </a>
+            </li>
+            <li class="no-show-full">
+                <div class="popover-container">
+                    <img src="../static/images/emsil.svg" width="40px" class="soc-media-img popover-trigger" />
+                    <div class="popover">
+                        traynovita@gmail.com
+                        <br>
+                        artemtraino@gmail.com
+                        <br>
+                        vita@seeds.dp.ua
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <section class="product-page-section">
+        <div class="product-img-text-wrap">
+            <div class="col-1">
+                <a class="prev" onclick="plusSlides(-1)">❮</a>
+                <img id="main-photo" class="main-photo" src="../static/images/dobryva-cat.jpg" />
+                <a class="next" onclick="plusSlides(1)">❯</a>
+                <div class="thumbnails">
+                    <img class="thumbnail-photo choose" src="../static/images/dobryva-cat.jpg" />
+                    <img class="thumbnail-photo" src="../static/images/ovochi2025.jpg" />
+                    <img class="thumbnail-photo" src="../static/images/dobryva-cat.jpg" />
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="product-title">
+                    Огірки Арктика F1 (корнішон партенокарпік) ранні 35-38 днів (10 шт)
+                </div>
+                <div class="one-line">
+                    <div class="product-info">
+                        <div class="product-cat">
+                            Овочі
+                        </div>
+                        <div class="product-available">
+                            В наявності
+                        </div>
+                    </div>
+                    <div class="product-price">
+                        30,00 грн
+                    </div>
+                </div>
+                <div class="product-desc">
+                    кількість в упаковці: 10 шт
+                    <br>
+                    Арктика-ідеальний для маринування ультраранній (33-38 днів) партенокарпічний гібрид.
+                    <br>
+                    Рослина потужна, з добре розвиненим листовим апаратом. Плоди циліндричні, однорідні, вирівняні,
+                    довжиною 9-10 см, діаметром 3-3,5 см. Прекрасно поміщається в літрові банки для консервування.
+                    <br>
+                    Гібрид плодоносить в стресових умовах спекотного літа.
+                </div>
+                <div class="one-line">
+                    <div class="product-quantity">
+                        <button id="minus" class="add-minus">
+                            -
+                        </button>
+                        <div id="quantity" class="quantity-amount">
+                            1
+                        </div>
+                        <button id="plus" class="add-minus">
+                            +
+                        </button>
+                    </div>
+                    <div class="product-buying">
+                        <button class="fav-btn tofav">
+                            <img src="../static/images/heart.svg" width="25px" height="30px" />
+                        </button>
+                        <button id="buy-btn" class="buy-btn">
+                            Купити
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="product-add-info">
+            <div class="sec-title">
+                <hr>
+                <div class="sec-title-text">
+                    Додаткова інформація
+                </div>
+            </div>
+            <div class="info-text">
+                <div>
+                    Кількість в упаковці
+                </div>
+                <div>
+                    10
+                </div>
+                <div>
+                    Кількість в упаковці
+                </div>
+                <div>
+                    10
+                </div>
+
+                <div>
+                    Кількість в упаковці
+                </div>
+                <div>
+                    10
+                </div>
+
+                <div>
+                    Кількість в упаковці
+                </div>
+                <div>
+                    10
+                </div>
+            </div>
+        </div>
+        <div class="more-prod">
+            <div class="sec-title">
+                <hr>
+                <div class="sec-title-text">
+                    Схожі пропозиції
+                </div>
+            </div>
+            <div class="carousel-wrapper">
+
+                <div class="card-carousel">
+                    <a class="prev-cat">❮</a>
+                    <div class="card-container">
+                        <div class="prod-card">
+                            <a href="productpage.html">
+                                <img class="prod-card-img" src="../static/images/dobryva-cat.jpg" />
+                                <div class="prod-card-text">
+                                    <div class="prod-card-name">
+                                        Огірки Арктика F1 (корнішон партенокарпік) ранні 35-38 днів (10 шт)
+                                    </div>
+                                    <div class="prod-card-info">
+                                        <div class="prod-card-cat">
+                                            Овочі
+                                        </div>
+                                        <div class="prod-card-side">
+                                            <div class="prod-card-money">
+                                                <div class="prod-card-price">290,00</div>
+                                                грн
+                                            </div>
+                                            <div class="prod-card-available">
+                                                в наявності
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="prod-card-btns">
+                                <button class="col-1 tofav">
+                                    <img src="../static/images/heart.svg" width="25px" height="30px" />
+                                </button>
+                                <button class="col-2 tobuy">
+                                    <img src="../static/images/cart-svgrepo-com (1).svg" width="30px" height="30px" />
+                                </button>
+                            </div>
+                        </div>
+                        <div class="prod-card">
+                            <a href="productpage.html">
+                                <img class="prod-card-img" src="../static/images/dobryva-cat.jpg" />
+                                <div class="prod-card-text">
+                                    <div class="prod-card-name">
+                                        Огірки Арктика F1 (корнішон партенокарпік) ранні 35-38 днів (10 шт)
+                                    </div>
+                                    <div class="prod-card-info">
+                                        <div class="prod-card-cat">
+                                            Овочі
+                                        </div>
+                                        <div class="prod-card-side">
+                                            <div class="prod-card-money">
+                                                <div class="prod-card-price">290,00</div>
+                                                грн
+                                            </div>
+                                            <div class="prod-card-available">
+                                                в наявності
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="prod-card-btns">
+                                <button class="col-1 tofav">
+                                    <img src="../static/images/heart.svg" width="25px" height="30px" />
+                                </button>
+                                <button class="col-2 tobuy">
+                                    <img src="../static/images/cart-svgrepo-com (1).svg" width="30px" height="30px" />
+                                </button>
+                            </div>
+                        </div>
+                        <div class="prod-card">
+                            <a href="productpage.html">
+                                <img class="prod-card-img" src="../static/images/dobryva-cat.jpg" />
+                                <div class="prod-card-text">
+                                    <div class="prod-card-name">
+                                        Огірки Арктика F1 (корнішон партенокарпік) ранні 35-38 днів (10 шт)
+                                    </div>
+                                    <div class="prod-card-info">
+                                        <div class="prod-card-cat">
+                                            Овочі
+                                        </div>
+                                        <div class="prod-card-side">
+                                            <div class="prod-card-money">
+                                                <div class="prod-card-price">290,00</div>
+                                                грн
+                                            </div>
+                                            <div class="prod-card-available">
+                                                в наявності
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="prod-card-btns">
+                                <button class="col-1 tofav">
+                                    <img src="../static/images/heart.svg" width="25px" height="30px" />
+                                </button>
+                                <button class="col-2 tobuy">
+                                    <img src="../static/images/cart-svgrepo-com (1).svg" width="30px" height="30px" />
+                                </button>
+                            </div>
+                        </div>
+                        <div class="prod-card">
+                            <a href="productpage.html">
+                                <img class="prod-card-img" src="../static/images/dobryva-cat.jpg" />
+                                <div class="prod-card-text">
+                                    <div class="prod-card-name">
+                                        Огірки Арктика F1 (корнішон партенокарпік) ранні 35-38 днів (10 шт)
+                                    </div>
+                                    <div class="prod-card-info">
+                                        <div class="prod-card-cat">
+                                            Овочі
+                                        </div>
+                                        <div class="prod-card-side">
+                                            <div class="prod-card-money">
+                                                <div class="prod-card-price">290,00</div>
+                                                грн
+                                            </div>
+                                            <div class="prod-card-available">
+                                                в наявності
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="prod-card-btns">
+                                <button class="col-1 tofav">
+                                    <img src="../static/images/heart.svg" width="25px" height="30px" />
+                                </button>
+                                <button class="col-2 tobuy">
+                                    <img src="../static/images/cart-svgrepo-com (1).svg" width="30px" height="30px" />
+                                </button>
+                            </div>
+                        </div>
+                        <div class="prod-card">
+                            <a href="productpage.html">
+                                <img class="prod-card-img" src="../static/images/dobryva-cat.jpg" />
+                                <div class="prod-card-text">
+                                    <div class="prod-card-name">
+                                        Огірки Арктика F1 (корнішон партенокарпік) ранні 35-38 днів (10 шт)
+                                    </div>
+                                    <div class="prod-card-info">
+                                        <div class="prod-card-cat">
+                                            Овочі
+                                        </div>
+                                        <div class="prod-card-side">
+                                            <div class="prod-card-money">
+                                                <div class="prod-card-price">290,00</div>
+                                                грн
+                                            </div>
+                                            <div class="prod-card-available">
+                                                в наявності
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="prod-card-btns">
+                                <button class="col-1 tofav">
+                                    <img src="../static/images/heart.svg" width="25px" height="30px" />
+                                </button>
+                                <button class="col-2 tobuy">
+                                    <img src="../static/images/cart-svgrepo-com (1).svg" width="30px" height="30px" />
+                                </button>
+                            </div>
+                        </div>
+                        <div class="prod-card">
+                            <a href="productpage.html">
+                                <img class="prod-card-img" src="../static/images/dobryva-cat.jpg" />
+                                <div class="prod-card-text">
+                                    <div class="prod-card-name">
+                                        Огірки Арктика F1 (корнішон партенокарпік) ранні 35-38 днів (10 шт)
+                                    </div>
+                                    <div class="prod-card-info">
+                                        <div class="prod-card-cat">
+                                            Овочі
+                                        </div>
+                                        <div class="prod-card-side">
+                                            <div class="prod-card-money">
+                                                <div class="prod-card-price">290,00</div>
+                                                грн
+                                            </div>
+                                            <div class="prod-card-available">
+                                                в наявності
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="prod-card-btns">
+                                <button class="col-1 tofav">
+                                    <img src="../static/images/heart.svg" width="25px" height="30px" />
+                                </button>
+                                <button class="col-2 tobuy">
+                                    <img src="../static/images/cart-svgrepo-com (1).svg" width="30px" height="30px" />
+                                </button>
+                            </div>
+                        </div>
+                        <div class="prod-card">
+                            <a href="productpage.html">
+                                <img class="prod-card-img" src="../static/images/dobryva-cat.jpg" />
+                                <div class="prod-card-text">
+                                    <div class="prod-card-name">
+                                        Огірки Арктика F1 (корнішон партенокарпік) ранні 35-38 днів (10 шт)
+                                    </div>
+                                    <div class="prod-card-info">
+                                        <div class="prod-card-cat">
+                                            Овочі
+                                        </div>
+                                        <div class="prod-card-side">
+                                            <div class="prod-card-money">
+                                                <div class="prod-card-price">290,00</div>
+                                                грн
+                                            </div>
+                                            <div class="prod-card-available">
+                                                в наявності
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="prod-card-btns">
+                                <button class="col-1 tofav">
+                                    <img src="../static/images/heart.svg" width="25px" height="30px" />
+                                </button>
+                                <button class="col-2 tobuy">
+                                    <img src="../static/images/cart-svgrepo-com (1).svg" width="30px" height="30px" />
+                                </button>
+                            </div>
+                        </div>
+                        <div class="prod-card">
+                            <a href="productpage.html">
+                                <img class="prod-card-img" src="../static/images/dobryva-cat.jpg" />
+                                <div class="prod-card-text">
+                                    <div class="prod-card-name">
+                                        Огірки Арктика F1 (корнішон партенокарпік) ранні 35-38 днів (10 шт)
+                                    </div>
+                                    <div class="prod-card-info">
+                                        <div class="prod-card-cat">
+                                            Овочі
+                                        </div>
+                                        <div class="prod-card-side">
+                                            <div class="prod-card-money">
+                                                <div class="prod-card-price">290,00</div>
+                                                грн
+                                            </div>
+                                            <div class="prod-card-available">
+                                                в наявності
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="prod-card-btns">
+                                <button class="col-1 tofav">
+                                    <img src="../static/images/heart.svg" width="25px" height="30px" />
+                                </button>
+                                <button class="col-2 tobuy">
+                                    <img src="../static/images/cart-svgrepo-com (1).svg" width="30px" height="30px" />
+                                </button>
+                            </div>
+                        </div>
+                        <div class="prod-card">
+                            <a href="productpage.html">
+                                <img class="prod-card-img" src="../static/images/dobryva-cat.jpg" />
+                                <div class="prod-card-text">
+                                    <div class="prod-card-name">
+                                        Огірки Арктика F1 (корнішон партенокарпік) ранні 35-38 днів (10 шт)
+                                    </div>
+                                    <div class="prod-card-info">
+                                        <div class="prod-card-cat">
+                                            Овочі
+                                        </div>
+                                        <div class="prod-card-side">
+                                            <div class="prod-card-money">
+                                                <div class="prod-card-price">290,00</div>
+                                                грн
+                                            </div>
+                                            <div class="prod-card-available">
+                                                в наявності
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="prod-card-btns">
+                                <button class="col-1 tofav">
+                                    <img src="../static/images/heart.svg" width="25px" height="30px" />
+                                </button>
+                                <button class="col-2 tobuy">
+                                    <img src="../static/images/cart-svgrepo-com (1).svg" width="30px" height="30px" />
+                                </button>
+                            </div>
+                        </div>
+                        <div class="prod-card">
+                            <a href="productpage.html">
+                                <img class="prod-card-img" src="../static/images/dobryva-cat.jpg" />
+                                <div class="prod-card-text">
+                                    <div class="prod-card-name">
+                                        Огірки Арктика F1 (корнішон партенокарпік) ранні 35-38 днів (10 шт)
+                                    </div>
+                                    <div class="prod-card-info">
+                                        <div class="prod-card-cat">
+                                            Овочі
+                                        </div>
+                                        <div class="prod-card-side">
+                                            <div class="prod-card-money">
+                                                <div class="prod-card-price">290,00</div>
+                                                грн
+                                            </div>
+                                            <div class="prod-card-available">
+                                                в наявності
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="prod-card-btns">
+                                <button class="col-1 tofav">
+                                    <img src="../static/images/heart.svg" width="25px" height="30px" />
+                                </button>
+                                <button class="col-2 tobuy">
+                                    <img src="../static/images/cart-svgrepo-com (1).svg" width="30px" height="30px" />
+                                </button>
+                            </div>
+                        </div>
+                        <div class="prod-card">
+                            <a href="productpage.html">
+                                <img class="prod-card-img" src="../static/images/dobryva-cat.jpg" />
+                                <div class="prod-card-text">
+                                    <div class="prod-card-name">
+                                        Огірки Арктика F1 (корнішон партенокарпік) ранні 35-38 днів (10 шт)
+                                    </div>
+                                    <div class="prod-card-info">
+                                        <div class="prod-card-cat">
+                                            Овочі
+                                        </div>
+                                        <div class="prod-card-side">
+                                            <div class="prod-card-money">
+                                                <div class="prod-card-price">290,00</div>
+                                                грн
+                                            </div>
+                                            <div class="prod-card-available">
+                                                в наявності
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="prod-card-btns">
+                                <button class="col-1 tofav">
+                                    <img src="../static/images/heart.svg" width="25px" height="30px" />
+                                </button>
+                                <button class="col-2 tobuy">
+                                    <img src="../static/images/cart-svgrepo-com (1).svg" width="30px" height="30px" />
+                                </button>
+                            </div>
+                        </div>
+                        <div class="prod-card">
+                            <a href="productpage.html">
+                                <img class="prod-card-img" src="../static/images/dobryva-cat.jpg" />
+                                <div class="prod-card-text">
+                                    <div class="prod-card-name">
+                                        Огірки Арктика F1 (корнішон партенокарпік) ранні 35-38 днів (10 шт)
+                                    </div>
+                                    <div class="prod-card-info">
+                                        <div class="prod-card-cat">
+                                            Овочі
+                                        </div>
+                                        <div class="prod-card-side">
+                                            <div class="prod-card-money">
+                                                <div class="prod-card-price">290,00</div>
+                                                грн
+                                            </div>
+                                            <div class="prod-card-available">
+                                                в наявності
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="prod-card-btns">
+                                <button class="col-1 tofav">
+                                    <img src="../static/images/heart.svg" width="25px" height="30px" />
+                                </button>
+                                <button class="col-2 tobuy">
+                                    <img src="../static/images/cart-svgrepo-com (1).svg" width="30px" height="30px" />
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                    <a class="next-cat">❯</a>
+                </div>
+            </div>
+        </div>
+        <div id="popout" class="popout-basket">
+            <div class="popout-info">
+                <div class="one-line">
+                    <div class="popout-title">
+                        Кошик
+                    </div>
+                    <button id="close-btn" class="close-btn">
+                        X
+                    </button>
+                </div>
+                <table id="popout-table" class="popout-table">
+                </table>
+                <div id="final-price" class="final-price">
+                    До сплати: 60 грн
+                </div>
+            </div>
+            <a href="form-page.html">
+                <button class="popout-btn">
+                    Оформити замовлення
+                </button>
+            </a>
+        </div>
+    </section>
+    <footer>
+        <img src="../static/images/Logo-seedsua.png" alt="Логотип Інтернет-магазин 'Семена'" class="logo" />
+        <div class="col-3">
+            <ul>
+                <li>
+                    <a href="reviews.html">
+                        Відгуки про магазин
+                    </a>
+                </li>
+                <li>
+                    <a href="index.html#delivery">
+                        Доставка та оплата
+                    </a>
+                </li>
+                <li>
+                    <a href="garantee.html">
+                        Гарантії та возврат
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-4">
+            <h2>Контакти</h2>
+            <ul>
+                <li>
+                    (093) 823-68-08
+                </li>
+                <li>
+                    (066) 823-68-08
+                </li>
+                <li>
+                    traynovita@gmail.com
+                </li>
+                <li>
+                    artemtraino@gmail.com
+                </li>
+                <li>
+                    vita@seeds.dp.ua 
+                </li>
+                <li>
+                    <a href="https://www.facebook.com/Vita.Trayno/">
+                        <img src="../static/images/facebook.svg" width="35px" class="soc-media-img" />
+                    </a>
+                    <a href="https://www.youtube.com/@vita_trayno">
+                        <img src="../static/images/youtube.svg" width="40px" class="soc-media-img" />
+                    </a>
+                    <a href="https://www.instagram.com/vitatrayno">
+                        <img src="../static/images/mdi_instagram.svg" width="40px" class="soc-media-img" />
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="copyright">
+            ©2015 - 2025 Інтернет магазин «Семена»
+        </div>
+    </footer>
+    <script src="../static/scripts/moreCard.js"></script>
+    <script src="../static/scripts/popout.js"></script>
+    <script src="../static/scripts/productpage.js"></script>
+    <script src="../static/scripts/tolike.js"></script>
+    <script src="../static/scripts/addToBasket.js"></script>
+    <script src="../static/scripts/header.js"></script>
+</body>
+
+</html>

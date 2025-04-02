@@ -1,0 +1,65 @@
+.popout-basket{
+    position: fixed;
+    background: white;
+    width: 900px;
+    min-height: 200px;
+    z-index: 1; 
+    right: 2%;
+    bottom: 0;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.popout-info{
+    margin: 20px;
+}
+.popout-basket .one-line{
+    font-weight: bold;
+}
+.popout-title{
+    font-size: 30px;
+}
+.close-btn{
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+.popout-table{
+    justify-self: center;
+    margin-top: 5px;
+    display: block;
+    border: none;
+}
+.popout-table td{
+    padding:0 5px;
+}
+.final-price{
+    justify-self: end;
+}
+.popout-btn{
+    background-color: #FED8E7;
+    width: 100%;
+    border: none;
+    bottom: 0;
+    font-size: 30px;
+    padding: 10px 0;
+}
+.popout-btn:hover{
+    background: #ffaccd;
+}
+.popout-delete{
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+.popout-hr{
+    width: 80%;
+    justify-self: center;
+    margin: 5px;
+}
+@media (max-width: 900px){
+    .popout-basket{
+        width: auto;
+    }
+  }

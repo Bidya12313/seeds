@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/styles/style.css">
+    <link rel="stylesheet" href="../static/styles/header.css">
+    <link rel="stylesheet" href="../static/styles/reviews.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+    <title>"Семена"</title>
+</head>
+
+<body>
+    <div class="top">
+        <button id="menu-toggle">☰</button> 
+        <div class="soc-media">
+            <div class="popover-container">
+                <img src="../static/images/phone.svg" width="40px" class="soc-media-img popover-trigger" />
+                <div class="popover">
+                    (093) 823-68-08
+                    <br>
+                    (066) 823-68-08
+                </div>
+            </div>
+            <div class="popover-container">
+                <img src="../static/images/basil_viber-outline.svg" width="40px" class="soc-media-img popover-trigger" />
+                <div class="popover">
+                    (093) 823-68-08
+                </div>
+            </div>
+            <a href="https://www.facebook.com/Vita.Trayno/">
+                <img src="../static/images/facebook.svg" width="35px" class="soc-media-img" />
+            </a>
+            <a href="https://www.youtube.com/@vita_trayno">
+                <img src="../static/images/youtube.svg" width="40px" class="soc-media-img" />
+            </a>
+            <a href="https://www.instagram.com/vitatrayno">
+                <img src="../static/images/mdi_instagram.svg" width="40px" class="soc-media-img" />
+            </a>
+            <div class="popover-container">
+                <img src="../static/images/emsil.svg" width="40px" class="soc-media-img popover-trigger" />
+                <div class="popover">
+                    traynovita@gmail.com
+                    <br>
+                    artemtraino@gmail.com
+                    <br>
+                    vita@seeds.dp.ua
+                </div>
+            </div>
+        </div>
+        <a href="index.html">
+            <img src="../static/images/Logo-seedsua.png" alt="Логотип Інтернет-магазин 'Семена'" class="logo" />
+        </a>
+        <div class="cart-container">
+            <a href="likelist.html">
+                <button class="cart-btn">
+                    <img src="../static/images/heart.svg" width="25px" height="30px" />
+                </button>
+            </a>
+            <div class="cart-text">
+                <p>Список побажань</p>
+            </div>
+            <a href="basket.html">
+                <button class="cart-btn">
+                    <img src="../static/images/cart-svgrepo-com (1).svg" width="30px" height="30px" />
+                </button>
+            </a>
+            <div class="cart-text">
+                <p>Корзина</p>
+            </div>
+        </div>
+    </div>
+    <div class="menu">
+        <ul  id="menu" class="menu-list">
+            <button id="menu-close">X</button>
+            <li class="menu-list-el">
+                <a class="el-a" href="index.html">
+                    Головна
+                </a>
+            </li>
+            <li class="menu-list-el">
+
+                <div class="dropdown" onmouseenter="showDropDown()" onmouseleave="hideDropDown()">
+                    <a class="el-a" href="categories.html">
+                        Каталог
+                        <div class="arr">
+                            ▼
+                        </div>
+                    </a>
+                    <ul id="categories-dropdown" class="cat-dropdown">
+                    </ul>
+                </div>
+            </li>
+            <li class="menu-list-el">
+                <a class="el-a" href="index.html#contacts">
+                    Контакти
+                </a>
+            </li>
+            <li class="menu-list-el">
+                <a class="el-a" href="reviews.html">
+                    Відгуки
+                </a>
+            </li>
+            <li class="menu-list-el">
+                <a class="el-a" href="index.html#delivery">
+                    Доставка та оплата
+                </a>
+            </li>
+            <li class="menu-list-el">
+                <a class="el-a" href="garantee.html">
+                    Гарантії та возврат
+                </a>
+            </li>
+            <li class="no-show-full">
+                <a href="likelist.html">
+                    <button class="cart-btn">
+                        <img src="../static/images/heart.svg" width="25px" height="30px" />
+                    </button>
+                </a>
+                <a href="basket.html">
+                    <button class="cart-btn">
+                        <img src="../static/images/cart-svgrepo-com (1).svg" width="30px" height="30px" />
+                    </button>
+                </a>
+            </li>
+            <li class="no-show-full">
+                <div class="popover-container">
+                    <img src="../static/images/phone.svg" width="40px" class="soc-media-img popover-trigger" />
+                    <div class="popover">
+                        (093) 823-68-08
+                        <br>
+                        (066) 823-68-08
+                    </div>
+                </div>
+            </li>
+            <li class="no-show-full">
+                <div class="popover-container">
+                    <img src="../static/images/basil_viber-outline.svg" width="40px" class="soc-media-img popover-trigger" />
+                    <div class="popover">
+                        (093) 823-68-08
+                    </div>
+                </div>
+            </li>
+            <li class="no-show-full">
+                <a href="https://www.facebook.com/Vita.Trayno/">
+                    <img src="../static/images/facebook.svg" width="35px" class="soc-media-img" />
+                </a>
+            </li>
+            <li class="no-show-full">
+                <a href="https://www.youtube.com/@vita_trayno">
+                    <img src="../static/images/youtube.svg" width="40px" class="soc-media-img" />
+                </a>
+            </li>
+            <li class="no-show-full">
+                <a href="https://www.instagram.com/vitatrayno">
+                    <img src="../static/images/mdi_instagram.svg" width="40px" class="soc-media-img" />
+                </a>
+            </li>
+            <li class="no-show-full">
+                <div class="popover-container">
+                    <img src="../static/images/emsil.svg" width="40px" class="soc-media-img popover-trigger" />
+                    <div class="popover">
+                        traynovita@gmail.com
+                        <br>
+                        artemtraino@gmail.com
+                        <br>
+                        vita@seeds.dp.ua
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <section class="review-section">
+        <div class="col-1">
+            <div class="reviews-wrapper">
+
+                <div class="client-review">
+                    <div class="same-line">
+                        <div class="client-name-review">
+                            Name
+                        </div>
+                        <div class="client-date-review">
+                            date
+                        </div>
+                    </div>
+                    <div class="stars-review">
+                        ★★★★★
+                    </div>
+                    <div class="main-text">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed tincidunt nulla. Nulla ac nulla
+                        in nulla vestibulum convallis. Nunc faucibus euismod pharetra. Vestibulum id scelerisque velit,
+                        a ultrices est. Duis nec tincidunt ligula. Aenean quis auctor diam.
+                    </div>
+                </div>
+                <div class="client-review">
+                    <div class="same-line">
+                        <div class="client-name-review">
+                            Name
+                        </div>
+                        <div class="client-date-review">
+                            date
+                        </div>
+                    </div>
+                    <div class="stars-review">
+                        ★★★★★
+                    </div>
+                    <div class="main-text">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed tincidunt nulla. Nulla ac nulla
+                        in nulla vestibulum convallis. Nunc faucibus euismod pharetra. Vestibulum id scelerisque velit,
+                        a ultrices est. Duis nec tincidunt ligula. Aenean quis auctor diam.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-2">
+            <form>
+                <div class="top-form">
+                    <p class="col-1">
+                        Відгуки
+                    </p>
+                    <div class="col-2">
+                        <input placeholder="Ваше ім'я">
+                    </div>
+                    <div class="col-2">
+
+                        <input placeholder="Email/телефон">
+                    </div>
+                </div>
+                <textarea class="form-text-field"></textarea>
+                <div class="same-line">
+                    <div class="star-rating">
+                        <input type="radio" id="star5" name="rating" value="5">
+                        <label for="star5">★</label>
+
+                        <input type="radio" id="star4" name="rating" value="4">
+                        <label for="star4">★</label>
+
+                        <input type="radio" id="star3" name="rating" value="3">
+                        <label for="star3">★</label>
+
+                        <input type="radio" id="star2" name="rating" value="2">
+                        <label for="star2">★</label>
+
+                        <input type="radio" id="star1" name="rating" value="1">
+                        <label for="star1">★</label>
+                    </div>
+                    <button type="submit">Надіслати</button>
+                </div>
+            </form>
+        </div>
+    </section>
+    <footer>
+        <img src="../static/images/Logo-seedsua.png" alt="Логотип Інтернет-магазин 'Семена'" class="logo" />
+        <div class="col-3">
+            <ul>
+                <li>
+                    <a href="reviews.html">
+                        Відгуки про магазин
+                    </a>
+                </li>
+                <li>
+                    <a href="index.html#delivery">
+                        Доставка та оплата
+                    </a>
+                </li>
+                <li>
+                    <a href="garantee.html">
+                        Гарантії та возврат
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-4">
+            <h2>Контакти</h2>
+            <ul>
+                <li>
+                    (093) 823-68-08
+                </li>
+                <li>
+                    (066) 823-68-08
+                </li>
+                <li>
+                    traynovita@gmail.com
+                </li>
+                <li>
+                    artemtraino@gmail.com
+                </li>
+                <li>
+                    vita@seeds.dp.ua 
+                </li>
+                <li>
+                    <a href="https://www.facebook.com/Vita.Trayno/">
+                        <img src="../static/images/facebook.svg" width="35px" class="soc-media-img" />
+                    </a>
+                    <a href="https://www.youtube.com/@vita_trayno">
+                        <img src="../static/images/youtube.svg" width="40px" class="soc-media-img" />
+                    </a>
+                    <a href="https://www.instagram.com/vitatrayno">
+                        <img src="../static/images/mdi_instagram.svg" width="40px" class="soc-media-img" />
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="copyright">
+            ©2015 - 2025 Інтернет магазин «Семена»
+        </div>
+    </footer>
+    <script src="../static/scripts/header.js"></script>
+</body>
+
+</html>

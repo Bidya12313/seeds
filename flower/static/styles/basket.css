@@ -1,0 +1,107 @@
+.basket-section, .likelist-section{
+    padding: 20px 50px;
+}
+.basket-section .title, .likelist-section .title{
+    margin-bottom: 20px;
+}
+table {
+    border-collapse: collapse;
+    text-align: center;
+    justify-self: center;
+    min-width: 600px;
+}
+tr{
+height: 40px;
+}
+td{
+    min-width: 100px;
+    font-size: 24px;
+    padding: 5px;
+}
+.table-img{
+    width: 60px;
+    margin-top: 5px;
+}
+.checkbox-delete{
+    width: 30px;
+    height: 30px;
+}
+table td, table th {
+    border: 1px solid #C0C0C0;
+}
+table tr:first-child th {
+    border-top: 0;
+}
+table tr:last-child td {
+    border-bottom: 0;
+}
+table tr td:first-child,
+table tr th:first-child {
+    border-left: 0;
+}
+table tr td:last-child,
+table tr th:last-child {
+    border-right: 0;
+}
+.delete-item{
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+.sum-text{
+    text-align: right;
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    gap: 5px;
+    margin-top: 20px;
+    font-size: 24px;
+    align-items: end;
+}
+.price{
+    font-size: 40px;
+    font-weight: bold;
+}
+.finish-buy-btn{
+    margin-top: 30px;
+    display: flex;
+    justify-content: right;
+    align-items: end;
+    gap: 10px;
+}
+.continue-btn, .buy-btn{
+    border: none;
+    border-radius: 10px;
+}
+.continue-btn{
+    background-color: #FED8E7;
+    padding: 10px 15px;
+    font-size: 24px;
+}
+.continue-btn:hover, .add-to-basket-btn:hover{
+    background-color: #ffaccd;
+}
+.buy-btn{
+    background-color: #FE5A9C;
+    font-size: 32px;
+    color: white;
+    padding: 15px;
+}
+.buy-btn:hover{
+    background-color: #c44276;
+}
+.add-to-basket-btn{
+    background: #FED8E7;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 5px;
+    margin: 5px;
+}
+.likelist-section .continue-btn{
+    justify-self: right;
+}
+
+.no-items{
+    text-align: center;
+    display: none;
+}
