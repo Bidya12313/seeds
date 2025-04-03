@@ -14,14 +14,24 @@ a {
 .slideshow-container{
   padding: 10px 100px;
 }
-.contact-section, .boxes-frame, .show-reviews, .delivery-section, .contact-section, .show-categories, .garantee-section {
+.contact-section, .boxes-frame, .show-reviews, .delivery-section, .contact-section, .show-categories, .garantee-section, .about-us-section {
   padding: 50px 100px;
 }
 section:nth-child(2n){
   background-color: #F4F3F3;
 }
-
-
+.about-us-section{
+  text-align: center;
+  font-size: 24px;
+}
+.about-us-section .small-text{
+  color: #F71972;
+  font-style: italic;
+}
+.about-us-section .big-text{
+  font-size: 30px;
+  color: #F71972;
+}
 .mySlides1,
 .mySlides2 {
   display: none

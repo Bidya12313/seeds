@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, flash, redirect, url_for
+from flask import Blueprint, render_template, flash, redirect, url_for, request
 
 
 main_routes = Blueprint('main', __name__)
@@ -29,11 +29,26 @@ def categories():
     return render_template("categories.html")
 
 
+@main_routes.route('/products')
+def category_products():
+    slug = request.args.get('category')
+    if slug:
+        pass
+    return render_template("products.html", slug=slug)
+
+
 @main_routes.route('/wishlist')
 def likelist():
-    return render_template('likelist.html')
+    return render_template("likelist.html")
 
 
 @main_routes.route('/basket')
 def basket():
-    return render_template('basket.html')
+    return render_template("basket.html")
+
+
+@main_routes.route('/about-us')
+def about_us():
+    return render_template("about_us.html")
+
+
