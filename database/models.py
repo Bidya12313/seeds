@@ -37,3 +37,5 @@ class Product(Base):
 
     manufacturer_id: Mapped[int] = mapped_column(ForeignKey("manufacturers.id"))
     manufacturer: Mapped["Manufacturer"] = relationship(back_populates="products")
+
+    status: Mapped[str] = mapped_column(String(50), nullable=True, default="active")

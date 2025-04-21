@@ -1,5 +1,7 @@
 from flask import Blueprint, render_template, flash, redirect, url_for, request
 
+from database.filter_category_queries import get_products_by_category
+
 
 main_routes = Blueprint('main', __name__)
 
@@ -33,8 +35,8 @@ def categories():
 def category_products():
     slug = request.args.get('category')
     if slug:
-        pass
-    return render_template("products.html", slug=slug)
+        produtcs, category_name = get_products_by_category(slug)
+    return render_template("products.html", slug=slug, products=produtcs, category_name=category_name)
 
 
 @main_routes.route('/wishlist')
