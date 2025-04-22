@@ -32,30 +32,35 @@
             </div>
             <div class="col-2">
                 <div class="product-title">
-                    Огірки Арктика F1 (корнішон партенокарпік) ранні 35-38 днів (10 шт)
+                    {{ product.name }}
                 </div>
                 <div class="one-line">
                     <div class="product-info">
                         <div class="product-cat">
-                            Овочі
+                            {{ category_name }}
                         </div>
                         <div class="product-available">
-                            В наявності
+                            {% if product.status == 'active' %}
+                            в наявності
+                            {% elif product.status == 'inactive' %}
+                            не в наявності
+                            {% endif %}
                         </div>
                     </div>
                     <div class="product-price">
-                        30,00 грн
+                        {{'{:,.2f}'.format(product.price)}} грн
                     </div>
                 </div>
                 <div class="product-desc">
-                    кількість в упаковці: 10 шт
+                    {{ product.description }}
+                    <!-- кількість в упаковці: 10 шт
                     <br>
                     Арктика-ідеальний для маринування ультраранній (33-38 днів) партенокарпічний гібрид.
                     <br>
                     Рослина потужна, з добре розвиненим листовим апаратом. Плоди циліндричні, однорідні, вирівняні,
                     довжиною 9-10 см, діаметром 3-3,5 см. Прекрасно поміщається в літрові банки для консервування.
                     <br>
-                    Гібрид плодоносить в стресових умовах спекотного літа.
+                    Гібрид плодоносить в стресових умовах спекотного літа. -->
                 </div>
                 <div class="one-line">
                     <div class="product-quantity">

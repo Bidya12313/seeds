@@ -85,8 +85,12 @@
         <div class="product-grid col-2">
             {% if products %}
             {% for product in products %}
+            {% if product.status == 'active' %}
             <div class="prod-card">
-                <a href="productpage.html">
+            {% elif product.status == 'inactive' %}
+            <div class="prod-card unable">
+            {% endif %}
+                <a href="/products/{{ product.id }}">
                     <img class="prod-card-img" src="../static/images/dobryva-cat.jpg" />
                     <div class="prod-card-text">
                         <div class="prod-card-name">
@@ -98,11 +102,15 @@
                             </div>
                             <div class="prod-card-side">
                                 <div class="prod-card-money">
-                                    <div class="prod-card-price">290,00</div>
+                                    <div class="prod-card-price">{{'{:,.2f}'.format(product.price)}}</div>
                                     грн
                                 </div>
                                 <div class="prod-card-available">
+                                    {% if product.status == 'active' %}
                                     в наявності
+                                    {% elif product.status == 'inactive' %}
+                                    не в наявності
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
