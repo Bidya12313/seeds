@@ -21,4 +21,21 @@ def get_product(product_id: int):
 
         get_category = select(Category.name).filter(Category.id==product.category_id)
         category = session.execute(get_category).scalars().first()
-    return product, category
+
+        get_manufacturer = select(Manufacturer.name).filter(Category.id==product.category_id)
+        manufacturer = session.execute(get_manufacturer).scalars().first()
+    return product, category, manufacturer
+
+
+def get_similar_products(product: Product, limit: int = 12):
+    first_word = product.name.split()[0]
+
+    with session_factory() as session:
+        query = (
+            select(Product)
+            .where(Product.category_id == product.category_id)
+            .where(Product.id != product.id)
+            .where(Product.name.ilike(f"%{first_word}%"))
+            .limit(limit)
+        )
+    return session.execute(query).scalars().all()

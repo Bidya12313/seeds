@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, flash, redirect, url_for, request
 
-from database.filter_category_queries import get_products_by_category, get_product
+from database.filter_category_queries import get_products_by_category, get_product, get_similar_products
 
 
 main_routes = Blueprint('main', __name__)
@@ -41,8 +41,9 @@ def category_products():
 
 @main_routes.route('/products/<int:product_id>')
 def product_page(product_id):
-    product, category_name = get_product(product_id)
-    return render_template("productpage.html", product=product, category_name=category_name)
+    product, category_name, manufacturer = get_product(product_id)
+    similar_products = get_similar_products(product)
+    return render_template("productpage.html", product=product, category_name=category_name, manufacturer=manufacturer, similar_products=similar_products)
 
 
 @main_routes.route('/wishlist')

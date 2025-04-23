@@ -39,3 +39,7 @@ class Product(Base):
     manufacturer: Mapped["Manufacturer"] = relationship(back_populates="products")
 
     status: Mapped[str] = mapped_column(String(50), nullable=True, default="active")
+    country: Mapped[str] = mapped_column(String(100), nullable=True)
+    quantity: Mapped[int] = mapped_column(default=0)
+    dosage: Mapped[str] = mapped_column(String(100), default="0", nullable=True)
+
