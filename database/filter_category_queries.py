@@ -21,16 +21,15 @@ def get_products_by_info_below(category_slug: str = None, manufacturer_slug: str
             category = session.execute(get_category).scalars().first()
 
             get_products_list = select(Product).filter(Product.category_id==category.id)
-            products_list_by_category = session.execute(get_products_list).scalars().all()
-            return products_list_by_category, category.name
+            products_list = session.execute(get_products_list).scalars().all()
         
-        if manufacturer:
-            get_manufacturer = select(Manufacturer).filter(Manufacturer.slug==manufacturer)
-            category = session.execute(get_category).scalars().first()
+        if manufacturer_slug:
+            get_manufacturer = select(Manufacturer).filter(Manufacturer.slug==manufacturer_slug)
+            manufacturer = session.execute(get_manufacturer).scalars().first()
 
-            get_products_list = select(Product).filter(Product.category_id==category.id)
-            products_list_by_category = session.execute(get_products_list).scalars().all()
-            return products_list_by_category, category.name
+            get_products_list = select(Product).filter(Product.manufacturer_id==manufacturer.id)
+            products_list = session.execute(get_products_list).scalars().all()
+        return products_list
 
 
 def get_product(product_id: int):
