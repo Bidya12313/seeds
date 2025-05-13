@@ -93,12 +93,14 @@
                 </div>
             </div>
             <div class="info-text">
+                {% if product.quantity != 0 %}
                 <div>
                     Кількість в упаковці
                 </div>
                 <div>
                     {{ product.quantity }}
                 </div>
+                {% endif %}
                 <div>
                     Виробник
                 </div>
@@ -113,12 +115,14 @@
                     {{ product.country }}
                 </div>
 
+                {% if product.dosage != '0' %}
                 <div>
                     Дозування
                 </div>
                 <div>
                     {{ product.dosage }}
                 </div>
+                {% endif %}
             </div>
         </div>
         <div class="more-prod">

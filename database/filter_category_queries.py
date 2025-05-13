@@ -14,6 +14,25 @@ def get_products_by_category(slug: str):
     return products_list_by_category, category.name
 
 
+def get_products_by_info_below(category_slug: str = None, manufacturer_slug: str = None):
+    with session_factory() as session:
+        if category_slug:
+            get_category = select(Category).filter(Category.slug==category_slug)
+            category = session.execute(get_category).scalars().first()
+
+            get_products_list = select(Product).filter(Product.category_id==category.id)
+            products_list_by_category = session.execute(get_products_list).scalars().all()
+            return products_list_by_category, category.name
+        
+        if manufacturer:
+            get_manufacturer = select(Manufacturer).filter(Manufacturer.slug==manufacturer)
+            category = session.execute(get_category).scalars().first()
+
+            get_products_list = select(Product).filter(Product.category_id==category.id)
+            products_list_by_category = session.execute(get_products_list).scalars().all()
+            return products_list_by_category, category.name
+
+
 def get_product(product_id: int):
     with session_factory() as session:
         get_product = select(Product).filter(Product.id==product_id)
