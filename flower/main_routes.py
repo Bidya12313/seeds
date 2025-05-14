@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, flash, redirect, url_for, request
 
-from database.filter_category_queries import get_products_by_category, get_product, get_similar_products
+from database.filter_category_queries import get_products_by_category, get_product, get_similar_products, get_products_by_info_below
 
 
 main_routes = Blueprint('main', __name__)
@@ -37,6 +37,12 @@ def category_products():
     if slug:
         produtcs, category_name = get_products_by_category(slug)
     return render_template("products.html", slug=slug, products=produtcs, category_name=category_name)
+
+
+@main_routes.route('/products/manufacturer/<slug>')
+def products_by_manufacturer(slug: str):
+    products = get_products_by_info_below(manufacturer_slug=slug)
+    return render_template("products.html", products=products)
 
 
 @main_routes.route('/products/<int:product_id>')

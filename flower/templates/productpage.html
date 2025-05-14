@@ -98,21 +98,21 @@
                     Кількість в упаковці
                 </div>
                 <div>
-                    {{ product.quantity }}
+                    <a href="/products/quantity/{{ product.quantity }}">{{ product.quantity }}</a>
                 </div>
                 {% endif %}
                 <div>
                     Виробник
                 </div>
                 <div>
-                    {{ manufacturer }}
+                    <a href="/products/manufacturer/{{ manufacturer.slug }}">{{ manufacturer.name }}</a>
                 </div>
 
                 <div>
                     Країна
                 </div>
                 <div>
-                    {{ product.country }}
+                    <a href="/products/country/{{ product.country_slug }}">{{ product.country }}</a>
                 </div>
 
                 {% if product.dosage != '0' %}
@@ -120,7 +120,7 @@
                     Дозування
                 </div>
                 <div>
-                    {{ product.dosage }}
+                    <a href="/products/dosage/{{ product.dosage }}">{{ product.dosage }}</a>
                 </div>
                 {% endif %}
             </div>

@@ -16,12 +16,12 @@ def get_products_by_category(slug: str):
 
 def get_products_by_info_below(category_slug: str = None, manufacturer_slug: str = None):
     with session_factory() as session:
-        if category_slug:
-            get_category = select(Category).filter(Category.slug==category_slug)
-            category = session.execute(get_category).scalars().first()
+        # if category_slug:
+        #     get_category = select(Category).filter(Category.slug==category_slug)
+        #     category = session.execute(get_category).scalars().first()
 
-            get_products_list = select(Product).filter(Product.category_id==category.id)
-            products_list = session.execute(get_products_list).scalars().all()
+        #     get_products_list = select(Product).filter(Product.category_id==category.id)
+        #     products_list = session.execute(get_products_list).scalars().all()
         
         if manufacturer_slug:
             get_manufacturer = select(Manufacturer).filter(Manufacturer.slug==manufacturer_slug)
@@ -29,7 +29,7 @@ def get_products_by_info_below(category_slug: str = None, manufacturer_slug: str
 
             get_products_list = select(Product).filter(Product.manufacturer_id==manufacturer.id)
             products_list = session.execute(get_products_list).scalars().all()
-        return products_list
+            return products_list
 
 
 def get_product(product_id: int):
@@ -40,7 +40,7 @@ def get_product(product_id: int):
         get_category = select(Category.name).filter(Category.id==product.category_id)
         category = session.execute(get_category).scalars().first()
 
-        get_manufacturer = select(Manufacturer.name).filter(Category.id==product.category_id)
+        get_manufacturer = select(Manufacturer).filter(Category.id==product.category_id)
         manufacturer = session.execute(get_manufacturer).scalars().first()
     return product, category, manufacturer
 
