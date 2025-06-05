@@ -1,5 +1,5 @@
 <footer>
-    <img src="../static/images/Logo.png" alt="Логотип Інтернет-магазин 'Семена'" class="logo" />
+    <img src="{{ url_for('static', filename='images/Logo.png') }}" alt="Логотип Інтернет-магазин 'Семена'" class="logo" />
     <div class="col-3">
         <ul>
             <li>
@@ -40,17 +40,17 @@
                 artemtraino@gmail.com
             </li>
             <li>
-                vita@seeds.dp.ua 
+                vita@seeds.dp.ua
             </li>
             <li>
                 <a href="https://www.facebook.com/Vita.Trayno/">
-                    <img src="../static/images/facebook.svg" width="35px" class="soc-media-img" />
+                    <img src="{{ url_for('static', filename='images/facebook.svg') }}" width="35px" class="soc-media-img" />
                 </a>
                 <a href="https://www.youtube.com/@vita_trayno">
-                    <img src="../static/images/youtube.svg" width="40px" class="soc-media-img" />
+                    <img src="{{ url_for('static', filename='images/youtube.svg') }}" width="40px" class="soc-media-img" />
                 </a>
                 <a href="https://www.instagram.com/vitatrayno">
-                    <img src="../static/images/mdi_instagram.svg" width="40px" class="soc-media-img" />
+                    <img src="{{ url_for('static', filename='images/mdi_instagram.svg') }}" width="40px" class="soc-media-img" />
                 </a>
             </li>
         </ul>

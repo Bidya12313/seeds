@@ -11,6 +11,7 @@ console.log(basketItems);
 function updatePopout() {
     basketItems = JSON.parse(localStorage.getItem("basket"));
     totalprice=0;
+    const deleteIconUrl = "/static/images/material-symbols_delete-outline.svg";
     container.innerHTML = "";
     basketItems.map((item) => {
         totalprice += item.price * item.quantity;
@@ -20,7 +21,7 @@ function updatePopout() {
           <tr id="row-${item.name}">
               <td style="border:none">
                   <button id="${item.name}"  class="popout-delete" onclick="deletePopoutRow(this)">
-                      <img src="../static/images/material-symbols_delete-outline.svg" width="30px"/>
+                      <img src="${deleteIconUrl}" width="30px"/>
                       </button>
               </td>
               <td style="border:none">

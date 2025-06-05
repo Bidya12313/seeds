@@ -39,9 +39,16 @@ def category_products():
     return render_template("products.html", slug=slug, products=produtcs, category_name=category_name)
 
 
-@main_routes.route('/products/manufacturer/<slug>')
-def products_by_manufacturer(slug: str):
-    products = get_products_by_info_below(manufacturer_slug=slug)
+@main_routes.route('/products/manufacturer/<m_name>')
+def products_by_manufacturer(m_name: str):
+    products = get_products_by_info_below(manufacturer_slug=m_name)
+    print(m_name)
+    return render_template("products.html", products=products)
+
+
+@main_routes.route('/products/country/<c_name>')
+def products_by_country(c_name: str):
+    products = get_products_by_info_below(country_slug=c_name)
     return render_template("products.html", products=products)
 
 

@@ -4,15 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/styles/style.css">
-    <link rel="stylesheet" href="../static/styles/productpage.css">
-    <link rel="stylesheet" href="../static/styles/products.css">
-    <link rel="stylesheet" href="../static/styles/header.css">
-    <link rel="stylesheet" href="../static/styles/popout.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/productpage.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/products.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/header.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/popout.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
-    <script src="..static/scripts/header.js" defer></script>
+    <script src="{{ url_for('static', filename='scripts/header.js') }}" defer></script>
     <title>"Семена"</title>
 </head>
 
@@ -91,7 +91,7 @@
             <div class="prod-card unable">
             {% endif %}
                 <a href="/products/{{ product.id }}">
-                    <img class="prod-card-img" src="../static/images/dobryva-cat.jpg" />
+                    <img class="prod-card-img" src="{{ url_for('static', filename='images/dobryva-cat.jpg') }}" />
                     <div class="prod-card-text">
                         <div class="prod-card-name">
                             {{ product.name }}
@@ -118,10 +118,10 @@
                 </a>
                 <div class="prod-card-btns">
                     <button class="col-1 tofav">
-                        <img src="../static/images/heart.svg" width="25px" height="30px" />
+                        <img src="{{ url_for('static', filename='images/heart.svg') }}" width="25px" height="30px" />
                     </button>
                     <button class="col-2 tobuy">
-                        <img src="../static/images/cart-svgrepo-com (1).svg" width="30px" height="30px" />
+                        <img src="{{ url_for('static', filename='images/cart-svgrepo-com (1).svg') }}" width="30px" height="30px" />
                     </button>
                 </div>
             </div>
@@ -129,7 +129,7 @@
             {% endif %}
             
             <div class="prod-card unable">
-                <img class="prod-card-img" src="../static/images/dobryva-cat.jpg" />
+                <img class="prod-card-img" src="{{ url_for('static', filename='images/dobryva-cat.jpg') }}" />
                 <div class="prod-card-text">
                     <div class="prod-card-name">
                         Огірки Арктика F1 (корнішон партенокарпік) ранні 35-38 днів (10 шт)
@@ -151,10 +151,10 @@
                 </div>
                 <div class="prod-card-btns">
                     <button class="col-1 tofav">
-                        <img src="../static/images/heart.svg" width="25px" height="30px" />
+                        <img src="{{ url_for('static', filename='images/heart.svg') }}" width="25px" height="30px" />
                     </button>
                     <button class="col-2 tobuy">
-                        <img src="../static/images/cart-svgrepo-com (1).svg" width="30px" height="30px" />
+                        <img src="{{ url_for('static', filename='images/cart-svgrepo-com (1).svg') }}" width="30px" height="30px" />
                     </button>
                 </div>
             </div>
@@ -185,11 +185,11 @@
     </section>
     
     {% include 'footer.html' %}
-    <script src="../static/scripts/addToBasket.js"></script>
-    <script src="../static/scripts/header.js"></script>
-    <script src="../static/scripts/products.js"></script>
-    <script src="../static/scripts/popout.js"></script>
-    <script src="../static/scripts/tolike.js"></script>
+    <script src="{{ url_for('static', filename='scripts/addToBasket.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/header.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/products.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/popout.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/tolike.js') }}"></script>
 </body>
 
 </html>
