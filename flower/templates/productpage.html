@@ -22,12 +22,13 @@
         <div class="product-img-text-wrap">
             <div class="col-1">
                 <a class="prev" onclick="plusSlides(-1)">❮</a>
-                <img id="main-photo" class="main-photo" src="../static/images/dobryva-cat.jpg" />
-                <a class="next" onclick="plusSlides(1)">❯</a>
+                    <img id="main-photo" class="main-photo" src="{{ url_for('static', filename='images/products/' ~ product.image_url.split(',')[0].strip()) }}" />
+                    <a class="next" onclick="plusSlides(1)">❯</a>
+
                 <div class="thumbnails">
-                    <img class="thumbnail-photo choose" src="../static/images/dobryva-cat.jpg" />
-                    <img class="thumbnail-photo" src="../static/images/ovochi2025.jpg" />
-                    <img class="thumbnail-photo" src="../static/images/dobryva-cat.jpg" />
+                    {% for filename in product.image_url.split(',') %}
+                    <img class="thumbnail-photo" src="{{ url_for('static', filename='images/products/' ~ filename.strip()) }}" onclick="changeMainPhoto(this)">
+                    {% endfor %}
                 </div>
             </div>
             <div class="col-2">
@@ -75,10 +76,10 @@
                         </button>
                     </div>
                     <div class="product-buying">
-                        <button class="fav-btn tofav">
+                        <button class="fav-btn tofav" data-name="{{ product.name }}" data-image="{{ product.image_url.split(',')[0] }}" data-price="{{ product.price }}">
                             <img src="../static/images/heart.svg" width="25px" height="30px" />
                         </button>
-                        <button id="buy-btn" class="buy-btn">
+                        <button class="buy-btn" data-name="{{ product.name }}" data-image="{{ product.image_url.split(',')[0] }}" data-price="{{ product.price }}">
                             Купити
                         </button>
                     </div>

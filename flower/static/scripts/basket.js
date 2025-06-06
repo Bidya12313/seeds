@@ -58,17 +58,17 @@ function updateBasket() {
         ${item.name}
         </td>
         <td>
-        ${item.price}
+        ${item.price.toFixed(2)}
         </td>
         <td>
         ${item.quantity}
         </td>
         <td>
-        ${item.price * item.quantity}
+        ${(item.price * item.quantity).toFixed(2)}
         </td>
         </tr>`;
       });
-      price.innerText = totalprice;
+      price.innerText = totalprice.toFixed(2);
     }
   }
     updateBasket();

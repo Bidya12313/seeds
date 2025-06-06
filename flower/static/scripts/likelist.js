@@ -42,10 +42,12 @@ function updateLikeList(){
                 ${item.name}
                 </td>
                 <td>
-                ${item.price}
+                ${Number(item.price).toFixed(2)}
                 </td>
                 <td>
-                <button id="${item.name}" class="add-to-basket-btn">
+                <button id="${item.name}" class="add-to-basket-btn"data-name="${item.name}" 
+                data-image="${item.image}" 
+                data-price="${item.price}">
                 Додати до кошика
                 </button>
                 </td>
@@ -61,17 +63,24 @@ function deleteRow(button) {
     button.closest("tr").remove();
     updateLikeList();
   }
-const fav = document.querySelectorAll(".tofav");
-fav.forEach((item)=>{
-  item.addEventListener('click',()=>{
-    addToLikelist('name', 'images/dobryva-cat.jpg', 30);
+const fav = document.querySelectorAll(".fav-btn.tofav");
+fav.forEach((item) => {
+  item.addEventListener('click', () => {
+    const name = item.dataset.name;
+    const image = item.dataset.image;
+    const price = parseFloat(item.dataset.price);
+    addToLikelist(name, image, price);
     updateLikeList();
-  })
-})
+  });
+});
+
 const toBasketBtns = document.querySelectorAll(".add-to-basket-btn");
 toBasketBtns.forEach((item)=>{
     item.addEventListener('click', ()=>{
-        addToBasket(item.name, item.image, item.price, 1);
+        const name = item.dataset.name;
+        const image = item.dataset.image;
+        const price = parseFloat(item.dataset.price);
+        addToBasket(name, image, price, 1);
         deleteRow(item);
     })
 })

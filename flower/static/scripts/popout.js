@@ -35,18 +35,15 @@ function updatePopout() {
                   </a
               </td>
               <td style="border:none">
-                  ${item.price} грн
-              </td>
-              <td style="border:none">
                    ${item.quantity} шт.
               </td>
               <td style="border:none">
-              ${item.quantity * item.price} грн
+              ${(item.quantity * item.price).toFixed(2)} грн
               </td>
               </tr>
                           `;
       });
-      price.innerText = "До сплати: " + totalprice + " грн";
+      price.innerText = "До сплати: " + totalprice.toFixed(2) + " грн";
 }
 updatePopout();
 
@@ -57,11 +54,15 @@ function deletePopoutRow(button) {
   button.closest("tr").remove();
   updatePopout();
 }
-const buy_popout = document.querySelectorAll(".tobuy");
+const buy_popout = document.querySelectorAll(".buy-btn");
 buy_popout.forEach((item)=>{
     item.addEventListener('click',()=>{
         console.log("click");
-        addToBasket('name', 'images/dobryva-cat.jpg', 30, 2);
+        const name = item.dataset.name;
+        const image = item.dataset.image;
+        const price = parseFloat(item.dataset.price);
+        const quantity = parseInt(document.getElementById("quantity").innerText);
+        addToBasket(name, image, price, quantity);
         updatePopout();
     })
   })
