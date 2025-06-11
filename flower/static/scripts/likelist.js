@@ -36,16 +36,20 @@ function updateLikeList(){
                 </button>
                 </td>
                 <td>
-                <img class="table-img" src="../static/${item.image}"/>
+                <a href="/products/${item.id}">
+                <img class="table-img" src="../static/images/products/${item.image}"/>
+                </a>
                 </td>
                 <td>
+                <a href="/products/${item.id}">
                 ${item.name}
+                </a>
                 </td>
                 <td>
                 ${Number(item.price).toFixed(2)}
                 </td>
                 <td>
-                <button id="${item.name}" class="add-to-basket-btn"data-name="${item.name}" 
+                <button id="${item.name}" class="add-to-basket-btn" data-id="${item.id}" data-name="${item.name}" 
                 data-image="${item.image}" 
                 data-price="${item.price}">
                 Додати до кошика
@@ -53,6 +57,7 @@ function updateLikeList(){
                 </td>
                 </tr>`;
             })
+            setupAddToBasketBtns();
         }
     }
 updateLikeList();
@@ -66,28 +71,34 @@ function deleteRow(button) {
 const fav = document.querySelectorAll(".fav-btn.tofav");
 fav.forEach((item) => {
   item.addEventListener('click', () => {
+    const id = item.dataset.id;
     const name = item.dataset.name;
     const image = item.dataset.image;
     const price = parseFloat(item.dataset.price);
-    addToLikelist(name, image, price);
+    addToLikelist(id, name, image, price);
     updateLikeList();
   });
 });
 
-const toBasketBtns = document.querySelectorAll(".add-to-basket-btn");
-toBasketBtns.forEach((item)=>{
-    item.addEventListener('click', ()=>{
-        const name = item.dataset.name;
-        const image = item.dataset.image;
-        const price = parseFloat(item.dataset.price);
-        addToBasket(name, image, price, 1);
-        deleteRow(item);
-    })
-})
+function setupAddToBasketBtns() {
+    const toBasketBtns = document.querySelectorAll(".add-to-basket-btn");
+    toBasketBtns.forEach((item)=> {
+        item.addEventListener('click', ()=> {
+            const id = item.dataset.id;
+            const name = item.dataset.name;
+            const image = item.dataset.image;
+            const price = parseFloat(item.dataset.price);
+            addToBasket(id, name, image, price, 1);
+            deleteRow(item);
+            updatePopout();
+        });
+    });
+}
 const finalBtn = document.getElementById("all-to-basket");
 finalBtn.addEventListener('click', ()=>{
     likeItems.forEach((i)=>{
         addToBasket(i.name, i.image, i.price, 1);
         deleteRow(i);
     })
+    updatePopout();
 })

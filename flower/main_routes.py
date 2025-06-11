@@ -42,7 +42,6 @@ def category_products():
 @main_routes.route('/products/manufacturer/<m_name>')
 def products_by_manufacturer(m_name: str):
     products = get_products_by_info_below(manufacturer_slug=m_name)
-    print(m_name)
     return render_template("products.html", products=products)
 
 
@@ -73,4 +72,8 @@ def basket():
 def about_us():
     return render_template("about_us.html")
 
+
+@main_routes.route('/cart')
+def cart():
+    return render_template("form-page.html")
 

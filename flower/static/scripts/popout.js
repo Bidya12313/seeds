@@ -25,14 +25,14 @@ function updatePopout() {
                       </button>
               </td>
               <td style="border:none">
-                  <a href="productpage.html">
-                      <img src="../static/${item.image}" width="50px"/>
+                  <a href="${item.id}">
+                      <img src="/static/images/products/${item.image}" width="50px"/>
                   </a>
               </td>
               <td style="border:none">
-                  <a href="productpage.html">
+                  <a href="${item.id}">
                       ${item.name}
-                  </a
+                  </a>
               </td>
               <td style="border:none">
                    ${item.quantity} шт.
@@ -58,11 +58,12 @@ const buy_popout = document.querySelectorAll(".buy-btn");
 buy_popout.forEach((item)=>{
     item.addEventListener('click',()=>{
         console.log("click");
+        const id = item.dataset.id;
         const name = item.dataset.name;
         const image = item.dataset.image;
         const price = parseFloat(item.dataset.price);
         const quantity = parseInt(document.getElementById("quantity").innerText);
-        addToBasket(name, image, price, quantity);
+        addToBasket(id, name, image, price, quantity);
         updatePopout();
     })
   })

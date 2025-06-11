@@ -52,10 +52,14 @@ function updateBasket() {
         </button>
         </td>
         <td>
-        <img class="table-img" src="../static/${item.image}"/>
+        <a href="/products/${item.id}">
+        <img class="table-img" src="/static/images/products/${item.image}"/>
+        </a>
         </td>
         <td>
-        ${item.name}
+        <a href="/products/${item.id}">
+                      ${item.name}
+        </a>
         </td>
         <td>
         ${item.price.toFixed(2)}

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+    <meta charset="UTF-8">
+    <title>Адмінка товарів</title>
+</head>
+<body>
+    <h1>Управління товарами</h1>
+
+    <form method="post">
+        <input type="hidden" name="id" id="prod-id" />
+        <label>Назва:</label>
+        <input type="text" name="name" required /><br>
+
+        <label>Ціна:</label>
+        <input type="number" name="price" step="0.01" required /><br>
+
+        <label>Категорія:</label>
+        <select name="category">
+            {% for cat in categories %}
+                <option value="{{ cat.id }}">{{ cat.name }}</option>
+            {% endfor %}
+        </select><br>
+
+        <label>Виробник:</label>
+        <select name="manufacturer">
+            {% for man in manufacturers %}
+                <option value="{{ man.id }}">{{ man.name }}</option>
+            {% endfor %}
+        </select><br>
+
+        <label>Країна:</label>
+        <input type="text" name="country" /><br>
+
+        <label>Зображення (URL):</label>
+        <input type="text" name="image_url" /><br>
+
+        <label>Опис:</label>
+        <textarea name="description"></textarea><br>
+
+        <label>Кількість:</label>
+        <input type="number" name="quantity" /><br>
+
+        <label>Статус:</label>
+        <select name="status">
+            <option value="active">В наявності</option>
+            <option value="inactive">Немає</option>
+        </select><br>
+
+        <button type="submit">Зберегти</button>
+    </form>
+
+    <hr>
+    <h2>Існуючі товари</h2>
+    <ul>
+        {% for prod in products %}
+            <li>
+                <strong>{{ prod.name }}</strong> — {{ prod.price }} грн
+                <a href="{{ url_for('main.delete_product', product_id=prod.id) }}">[Видалити]</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

@@ -35,23 +35,25 @@ function updateBasket() {
       container.innerHTML += `
       <tr id="row-${item.name}">
         <td>
-        <img class="table-img" src="${item.image}"/>
+        <a href="/products/${item.id}">
+        <img class="table-img" src="/static/images/products/${item.image}"/>
+        </a>
         </td>
         <td>
-        ${item.name}
+        <a href="/products/${item.id}">${item.name}</a>
         </td>
         <td>
-        ${item.price}
+        ${item.price.toFixed(2)}
         </td>
         <td>
         ${item.quantity}
         </td>
         <td>
-        ${item.price * item.quantity}
+        ${(item.price * item.quantity).toFixed(2)}
         </td>
         </tr>`;
       });
-      price.innerText = totalprice;
+      price.innerText = totalprice.toFixed(2);
     }
   }
     updateBasket();

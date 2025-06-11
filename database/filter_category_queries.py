@@ -16,13 +16,6 @@ def get_products_by_category(slug: str):
 
 def get_products_by_info_below(country_slug: str = None, manufacturer_slug: str = None):
     with session_factory() as session:
-        # if category_slug:
-        #     get_category = select(Category).filter(Category.slug==category_slug)
-        #     category = session.execute(get_category).scalars().first()
-
-        #     get_products_list = select(Product).filter(Product.category_id==category.id)
-        #     products_list = session.execute(get_products_list).scalars().all()
-        
         if manufacturer_slug:
             get_manufacturer = select(Manufacturer).filter(Manufacturer.slug==manufacturer_slug)
             manufacturer = session.execute(get_manufacturer).scalars().first()

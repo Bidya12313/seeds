@@ -76,10 +76,10 @@
                         </button>
                     </div>
                     <div class="product-buying">
-                        <button class="fav-btn tofav" data-name="{{ product.name }}" data-image="{{ product.image_url.split(',')[0] }}" data-price="{{ product.price }}">
+                        <button class="fav-btn tofav" data-id="{{product.id}}" data-name="{{ product.name }}" data-image="{{ product.image_url.split(',')[0] }}" data-price="{{ product.price }}">
                             <img src="../static/images/heart.svg" width="25px" height="30px" />
                         </button>
-                        <button class="buy-btn" data-name="{{ product.name }}" data-image="{{ product.image_url.split(',')[0] }}" data-price="{{ product.price }}">
+                        <button class="buy-btn" data-id="{{product.id}}" data-name="{{ product.name }}" data-image="{{ product.image_url.split(',')[0] }}" data-price="{{ product.price }}">
                             Купити
                         </button>
                     </div>
@@ -140,23 +140,27 @@
                     <div class="card-container">
                         {% for similar_product in similar_products %}
                         <div class="prod-card">
-                            <a href="/products/{{ product.id }}">
-                                <img class="prod-card-img" src="../static/images/dobryva-cat.jpg" />
+                            <a href="/products/{{ similar_product.id }}">
+                                <img class="prod-card-img" src="{{ url_for('static', filename='images/products/' ~ similar_product.image_url.split(',')[0].strip()) }}" />
                                 <div class="prod-card-text">
                                     <div class="prod-card-name">
                                         {{ similar_product.name }}
                                     </div>
                                     <div class="prod-card-info">
                                         <div class="prod-card-cat">
-                                            Овочі
+                                            {{ category_name }}
                                         </div>
                                         <div class="prod-card-side">
                                             <div class="prod-card-money">
-                                                <div class="prod-card-price">290,00</div>
+                                                <div class="prod-card-price">{{'{:,.2f}'.format(similar_product.price)}} грн</div>
                                                 грн
                                             </div>
                                             <div class="prod-card-available">
+                                                {% if product.status == 'active' %}
                                                 в наявності
+                                                {% elif product.status == 'inactive' %}
+                                                не в наявності
+                                                {% endif %}
                                             </div>
                                         </div>
                                     </div>
@@ -193,7 +197,7 @@
                     До сплати: 60 грн
                 </div>
             </div>
-            <a href="form-page.html">
+            <a href="/cart">
                 <button class="popout-btn">
                     Оформити замовлення
                 </button>

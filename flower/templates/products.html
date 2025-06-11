@@ -91,7 +91,7 @@
             <div class="prod-card unable">
             {% endif %}
                 <a href="/products/{{ product.id }}">
-                    <img class="prod-card-img" src="{{ url_for('static', filename='images/dobryva-cat.jpg') }}" />
+                    <img class="prod-card-img" src="{{ url_for('static', filename='images/products/' ~ product.image_url.split(',')[0].strip()) }}" width="240px" height="240px"/>
                     <div class="prod-card-text">
                         <div class="prod-card-name">
                             {{ product.name }}
@@ -117,10 +117,10 @@
                     </div>
                 </a>
                 <div class="prod-card-btns">
-                    <button class="col-1 tofav">
+                    <button class="col-1 tofav" data-id="{{product.id}}" data-name="{{ product.name }}" data-image="{{ product.image_url.split(',')[0] }}" data-price="{{ product.price }}">
                         <img src="{{ url_for('static', filename='images/heart.svg') }}" width="25px" height="30px" />
                     </button>
-                    <button class="col-2 tobuy">
+                    <button class="col-2 tobuy" data-id="{{product.id}}" data-name="{{ product.name }}" data-image="{{ product.image_url.split(',')[0] }}" data-price="{{ product.price }}">
                         <img src="{{ url_for('static', filename='images/cart-svgrepo-com (1).svg') }}" width="30px" height="30px" />
                     </button>
                 </div>
