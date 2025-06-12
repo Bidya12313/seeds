@@ -1,66 +1,114 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="uk">
 <head>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
-    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
-    <meta charset="UTF-8">
-    <title>Адмінка товарів</title>
+  <meta charset="utf-8">
+  <title>Управління товарами</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
-    <h1>Управління товарами</h1>
+<body class="bg-light">
+<div class="container py-4">
+  <h2 class="mb-4">Адмінка товарів</h2>
 
-    <form method="post">
-        <input type="hidden" name="id" id="prod-id" />
-        <label>Назва:</label>
-        <input type="text" name="name" required /><br>
+  <!-- Додати товар (модальне вікно) -->
+  <button class="btn btn-primary mb-4" data-bs-toggle="modal" data-bs-target="#addModal">➕ Додати товар</button>
 
-        <label>Ціна:</label>
-        <input type="number" name="price" step="0.01" required /><br>
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for p in products %}
+      <div class="col">
+        <div class="card h-100">
+          <img src="{{ url_for('static', filename='images/products/' ~ p.image_url.split(',')[0].strip()) }}" class="card-img-top" style="object-fit:cover; height:200px;">
+          <div class="card-body">
+            <a href="/products/{{p.id}}"><h5 class="card-title">{{ p.name }}</h5></a>
+            <p class="card-text">Ціна: {{ p.price }} грн</p>
 
-        <label>Категорія:</label>
-        <select name="category">
+            <!-- Форма редагування -->
+            <form method="POST" action="{{ url_for('main.edit_product', product_id=p.id) }}" enctype="multipart/form-data">
+            <input name="name" class="form-control mb-2" value="{{ p.name }}">
+            <input name="price" class="form-control mb-2" type="number" step="0.01" value="{{ p.price }}">
+            <input name="description" class="form-control mb-2" value="{{ p.description }}">
+
+            <input type="file" name="images" class="form-control mb-2" multiple accept="image/*">
+
+            <select name="category" class="form-select mb-2">
+                {% for cat in categories %}
+                <option value="{{ cat.id }}" {% if cat.id == p.category_id %}selected{% endif %}>{{ cat.name }}</option>
+                {% endfor %}
+            </select>
+
+            <select name="manufacturer" class="form-select mb-2">
+                {% for m in manufacturers %}
+                <option value="{{ m.id }}" {% if m.id == p.manufacturer_id %}selected{% endif %}>{{ m.name }}</option>
+                {% endfor %}
+            </select>
+
+            <button type="submit" class="btn btn-warning btn-sm">💾 Зберегти</button>
+            </form>
+
+
+
+            <!-- Видалення -->
+            <form method="POST" action="{{ url_for('main.delete_product', product_id=p.id) }}" class="mt-2"
+                  onsubmit="return confirm('Видалити {{ p.name }}?')">
+              <button type="submit" class="btn btn-sm btn-danger">❌ Видалити</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<!-- Модальне вікно для додавання -->
+<div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <form class="modal-content" method="POST" action="{{ url_for('main.admin_products') }}" enctype="multipart/form-data">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addModalLabel">Новий товар</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрити"></button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" name="action" value="add">
+        <div class="mb-3">
+          <label class="form-label">Назва</label>
+          <input type="text" class="form-control" name="name" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Ціна</label>
+          <input type="number" step="0.01" class="form-control" name="price" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Опис</label>
+            <textarea class="form-control" name="description" rows="3"></textarea>
+           </div>
+        <div class="mb-3">
+            <label class="form-label">Зображення</label>
+            <input type="file" class="form-control" name="images" accept="image/*" multiple>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Категорія</label>
+          <select class="form-select" name="category">
             {% for cat in categories %}
-                <option value="{{ cat.id }}">{{ cat.name }}</option>
+              <option value="{{ cat.id }}">{{ cat.name }}</option>
             {% endfor %}
-        </select><br>
-
-        <label>Виробник:</label>
-        <select name="manufacturer">
-            {% for man in manufacturers %}
-                <option value="{{ man.id }}">{{ man.name }}</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Виробник</label>
+          <select class="form-select" name="manufacturer">
+            {% for m in manufacturers %}
+              <option value="{{ m.id }}">{{ m.name }}</option>
             {% endfor %}
-        </select><br>
-
-        <label>Країна:</label>
-        <input type="text" name="country" /><br>
-
-        <label>Зображення (URL):</label>
-        <input type="text" name="image_url" /><br>
-
-        <label>Опис:</label>
-        <textarea name="description"></textarea><br>
-
-        <label>Кількість:</label>
-        <input type="number" name="quantity" /><br>
-
-        <label>Статус:</label>
-        <select name="status">
-            <option value="active">В наявності</option>
-            <option value="inactive">Немає</option>
-        </select><br>
-
-        <button type="submit">Зберегти</button>
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-success">Додати</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Скасувати</button>
+      </div>
     </form>
+  </div>
+</div>
 
-    <hr>
-    <h2>Існуючі товари</h2>
-    <ul>
-        {% for prod in products %}
-            <li>
-                <strong>{{ prod.name }}</strong> — {{ prod.price }} грн
-                <a href="{{ url_for('main.delete_product', product_id=prod.id) }}">[Видалити]</a>
-            </li>
-        {% endfor %}
-    </ul>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

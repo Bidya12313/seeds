@@ -12,14 +12,14 @@ console.log(category);
 cat_arr.forEach((item)=>{
     if(item.name === category){
         document.getElementById("category-list").innerHTML+=`
-                            <li id="${item.name}" class="categories chosen">
+                            <a href="prducts?category=${item.slug}"><li id="${item.name}" class="categories chosen">
                             ${item.name} →
-                        </li>`;
+                        </li></a>`;
     }
     else{
         document.getElementById("category-list").innerHTML+=`
-                            <li id="${item.name}" class="categories">
+                            <a href="products?category=${item.slug}"><li id="${item.name}" class="categories">
                             ${item.name} →
-                        </li>`;
+                        </li></a>`;
     }
 })

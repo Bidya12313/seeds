@@ -87,7 +87,11 @@ function deleteRow(button) {
 const buy = document.querySelectorAll(".tobuy");
 buy.forEach((item)=>{
     item.addEventListener('click',()=>{
-      addToBasket('name', 'images/dobryva-cat.jpg', 30, 2);
+      const id = item.dataset.id;
+      const name = item.dataset.name;
+      const image = item.dataset.image;
+      const price = parseFloat(item.dataset.price);
+      addToBasket(id, name, image, price);
       updateBasket();
     })
   })

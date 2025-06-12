@@ -1,7 +1,10 @@
 from flask import Blueprint, render_template, flash, redirect, url_for, request
 
 from database.filter_category_queries import get_products_by_category, get_product, get_similar_products, get_products_by_info_below
+from database.models import Product, Category, Manufacturer
+from database.engine import session_factory as SessionFactory
 
+from .image_upload import save_images
 
 main_routes = Blueprint('main', __name__)
 
@@ -77,3 +80,63 @@ def about_us():
 def cart():
     return render_template("form-page.html")
 
+
+
+@main_routes.route('/admin/products', methods=['GET', 'POST'])
+def admin_products():
+    with SessionFactory() as session:
+        if request.method == 'POST' and request.form.get('action') == 'add':
+            files = request.files.getlist('images')
+            print(files)
+            image_urls = save_images(files)
+            image_url_str = ','.join(image_urls)
+
+            new_product = Product(
+                name=request.form['name'],
+                price=float(request.form['price']),
+                image_url=image_url_str,
+                category_id=int(request.form['category']),
+                manufacturer_id=int(request.form['manufacturer']),
+                description=request.form.get('description', '')
+            )
+            session.add(new_product)
+            session.commit()
+            return redirect(url_for('main.admin_products'))
+
+        products = session.query(Product).all()
+        categories = session.query(Category).all()
+        manufacturers = session.query(Manufacturer).all()
+
+    return render_template(
+        'admin_products.html',
+        products=products,
+        categories=categories,
+        manufacturers=manufacturers
+    )
+
+@main_routes.route('/admin/products/edit/<int:product_id>', methods=['POST'])
+def edit_product(product_id):
+    with SessionFactory() as session:
+        product = session.get(Product, product_id)
+        product.name = request.form['name']
+        product.price = float(request.form['price'])
+        product.category_id = int(request.form['category'])
+        product.manufacturer_id = int(request.form['manufacturer'])
+        product.description = request.form.get('description', '')
+
+        files = request.files.getlist('images')
+        if files and any(f.filename for f in files):
+            new_image_urls = save_images(files)
+            existing = product.image_url.split(',') if product.image_url else []
+            product.image_url = ','.join(existing + new_image_urls)
+
+        session.commit()
+    return redirect(url_for('main.admin_products'))
+
+@main_routes.route('/admin/products/delete/<int:product_id>', methods=['POST'])
+def delete_product(product_id):
+    with SessionFactory() as session:
+        product = session.get(Product, product_id)
+        session.delete(product)
+        session.commit()
+    return redirect(url_for('main.admin_products'))
