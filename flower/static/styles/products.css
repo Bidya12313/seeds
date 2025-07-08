@@ -53,8 +53,9 @@
     width: 240px;
     display: flex;
     flex-direction: column;
-    max-height: 550px;
+    min-height: 100%;
     align-self: center;
+    justify-content: space-between;
 }
 .prod-card:hover{
     box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
@@ -82,6 +83,7 @@
 }
 .prod-card-cat{
     color: #7A7779;
+    text-align: left;
 }
 .prod-card-money{
     display: inline-flex;
@@ -93,6 +95,7 @@
 }
 .prod-card-available{
     color: #00A632;
+    text-wrap: nowrap;
 }
 .unable .prod-card-available{
     color: red;
@@ -123,5 +126,15 @@
 @media (max-width: 900px){
     .product-grid{
         grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width: 750px){
+    .product-section, .product-grid{
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
+    .product-grid{
+        align-self: center;
     }
 }

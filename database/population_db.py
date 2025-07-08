@@ -1,12 +1,13 @@
 from .engine import Base, db_engine
 
-from .models import Category, Product, Manufacturer
+from .models import Category, Product, Manufacturer, Review
 
 
 tables = [
     Category.__table__,
     Product.__table__,
     Manufacturer.__table__,
+    Review.__table__,
 ]
 
 

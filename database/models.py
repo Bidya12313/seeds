@@ -1,7 +1,9 @@
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-from sqlalchemy import String, Integer, Float, ForeignKey
+from sqlalchemy import String, Integer, Float, ForeignKey, DateTime, func
 
 from .engine import Base
+
+from datetime import datetime
 
 
 class Category(Base):
@@ -44,4 +46,14 @@ class Product(Base):
     country_slug: Mapped[str] = mapped_column(String(100), nullable=True)
     quantity: Mapped[int] = mapped_column(default=0)
     dosage: Mapped[str] = mapped_column(String(100), default="0", nullable=True)
+
+
+class Review(Base):
+    __tablename__ = "reviews"
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    username: Mapped[str] = mapped_column(String(100), nullable=True)
+    comment: Mapped[str] = mapped_column(String(1000))
+    rating: Mapped[int] = mapped_column(nullable=False)
+    created_at: Mapped[datetime] = mapped_column(DateTime, default=func.now())
 

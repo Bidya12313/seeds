@@ -2,6 +2,9 @@ body {
   margin: 0;
   font-family: "Montserrat", sans-serif;
   font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 button, input::placeholder {
@@ -13,6 +16,9 @@ a {
 }
 .slideshow-container{
   padding: 10px 100px;
+}
+section{
+  flex: 1;
 }
 .contact-section, .boxes-frame, .show-reviews, .delivery-section, .contact-section, .show-categories, .garantee-section, .about-us-section {
   padding: 50px 100px;
@@ -460,6 +466,16 @@ footer .col-3{
   .slideshow-container{
     padding: 10px;
   }
+  .prev, .next{
+    margin-top: -60px;
+  }
+  .next{
+    right: 0;
+  }
+ .top-section{
+    flex-direction: column;
+    gap: 15px;
+  }
   .contact-grid{
     display: flex;
     gap: 15px;
@@ -467,8 +483,21 @@ footer .col-3{
   .boxes-frame, .main-review-container, .contact-grid{
     flex-direction: column;
   }
+  .box{
+    width:80%;
+  }
+  .delivery-text{
+    padding: 0;
+  }
+  .delivery-small-text{
+    align-self: baseline;
+  }
   form{
     justify-self: center;
+  }
+  .top-form{
+    display: flex;
+    flex-direction: column;
   }
   footer{
     display: flex;

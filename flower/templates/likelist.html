@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,9 +15,10 @@
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
     <title>"Семена"</title>
 </head>
+
 <body>
     {% include 'header.html' %}
-    
+
     <section class="likelist-section">
         <div class="title">
             Список бажань
@@ -28,7 +30,7 @@
             <table id="likelist">
                 <tr>
                     <th>
-                        <img src="../static/images/material-symbols_delete-outline.svg" width="30px"/>
+                        <img src="../static/images/material-symbols_delete-outline.svg" width="30px" />
                     </th>
                     <th>
                         Фото
@@ -41,11 +43,6 @@
                     </th>
                 </tr>
             </table>
-        </div>
-        <div class="finish-buy-btn">
-            <button id="all-to-basket" class="continue-btn">
-                Додати все до кошика
-            </button>
         </div>
     </section>
     <div class="more-prod">
@@ -444,7 +441,7 @@
                             </button>
                         </div>
                     </div>
-                    
+
                 </div>
                 <a class="next-cat">❯</a>
             </div>
@@ -466,13 +463,13 @@
                 До сплати: 60 грн
             </div>
         </div>
-        <a href="form-page.html">
+        <a href="/cart">
             <button class="popout-btn">
                 Оформити замовлення
             </button>
         </a>
     </div>
-    
+
     {% include 'footer.html' %}
     <script src="../static/scripts/moreCard.js"></script>
     <script src="../static/scripts/addToBasket.js"></script>
@@ -480,4 +477,5 @@
     <script src="../static/scripts/likelist.js"></script>
     <script src="../static/scripts/header.js"></script>
 </body>
+
 </html>

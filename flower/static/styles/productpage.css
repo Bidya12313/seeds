@@ -20,6 +20,10 @@
 .main-photo{
     width: 400px;
 }
+.not-available{
+    -webkit-filter: grayscale(100%); 
+    filter: grayscale(100%);
+}
  .thumbnails{
     text-align: center;
     transition-duration: 0.4s;
@@ -79,6 +83,7 @@
 }
 .quantity-amount{
     padding: 10px 25px;
+    width: 30px;
 }
 .fav-btn{
     background: #FED8E7;
@@ -86,7 +91,7 @@
     border: none;
     padding: 10px 15px;
 }
-.fav-btn:hover{
+.fav-btn:hover, .fav-exist{
     background-color: #f98db8;
 }
 .buy-btn{
@@ -127,6 +132,7 @@ hr{
     text-align: center;
     margin-top: 30px;
     font-size: 20px;
+    padding: 30px 50px;
 }
 .info-text div{
     margin: 5px 0;

@@ -2,16 +2,14 @@ const container = document.getElementById("basket");
 let basketItems = JSON.parse(localStorage.getItem("basket"));
 const price = document.getElementById("price");
 let totalprice = 0;
-console.log(basketItems);
 function updateBasket() {
   basketItems = JSON.parse(localStorage.getItem("basket"));
-  if(basketItems.length === 0){
+  if (basketItems.length === 0) {
     document.getElementById("sum-text").style.display = "none";
     container.innerHTML = "";
-  }
-  else{
-      document.getElementById("sum-text").style.display = "flex";
-    container.innerHTML=`<tr>
+  } else {
+    document.getElementById("sum-text").style.display = "flex";
+    container.innerHTML = `<tr>
     <th>
     Фото
     </th>
@@ -30,8 +28,7 @@ function updateBasket() {
     </tr>`;
     totalprice = 0;
     basketItems.map((item) => {
-      totalprice +=item.price * item.quantity;
-      console.log(totalprice);
+      totalprice += item.price * item.quantity;
       container.innerHTML += `
       <tr id="row-${item.name}">
         <td>
@@ -52,13 +49,12 @@ function updateBasket() {
         ${(item.price * item.quantity).toFixed(2)}
         </td>
         </tr>`;
-      });
-      price.innerText = totalprice.toFixed(2);
-    }
+    });
+    price.innerText = totalprice.toFixed(2);
   }
-    updateBasket();
+}
+updateBasket();
 function deleteRow(button) {
-  console.log(button);
   basketItems = basketItems.filter((item) => item.name != button.id);
   localStorage.setItem("basket", JSON.stringify(basketItems));
   button.closest("tr").remove();

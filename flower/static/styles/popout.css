@@ -9,6 +9,7 @@
     display: none;
     flex-direction: column;
     justify-content: space-between;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 .popout-info{
     margin: 20px;

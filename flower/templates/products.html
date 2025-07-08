@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/products.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/productpage.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles/products.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/header.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/popout.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,7 +18,7 @@
 
 <body>
     {% include 'header.html' %}
-    
+
     <section class="product-section">
         <div class="product-conf col-1">
             <div class="conf-wrapper">
@@ -45,13 +45,13 @@
                 </ul>
             </div>
             <div class="conf-wrapper">
-                <div id="producers" class="bar-title bar-name"  style="display: block;">
+                <div id="producers" class="bar-title bar-name">
                     Виробники
                     <div class="arr">
                         ▼
                     </div>
                 </div>
-                <ul class="producers">
+                <ul class="producers" style="display: block;">
                     <li>
                         Добрива →
                     </li>
@@ -87,103 +87,109 @@
             {% for product in products %}
             {% if product.status == 'active' %}
             <div class="prod-card">
-            {% elif product.status == 'inactive' %}
-            <div class="prod-card unable">
-            {% endif %}
-                <a href="/products/{{ product.id }}">
-                    <img class="prod-card-img" src="{{ url_for('static', filename='images/products/' ~ product.image_url.split(',')[0].strip()) }}" width="240px" height="240px"/>
+                {% elif product.status == 'inactive' %}
+                <div class="prod-card unable">
+                    {% endif %}
+                    <a href="/products/{{ product.id }}">
+                        <img class="prod-card-img"
+                            src="{{ url_for('static', filename='images/products/' ~ product.image_url.split(',')[0].strip()) }}"
+                            width="240px" height="240px" />
+                        <div class="prod-card-text">
+                            <div class="prod-card-name">
+                                {{ product.name }}
+                            </div>
+                            <div class="prod-card-info">
+                                <div class="prod-card-cat">
+                                    {{ category_name }}
+                                </div>
+                                <div class="prod-card-side">
+                                    <div class="prod-card-money">
+                                        <div class="prod-card-price">{{'{:,.2f}'.format(product.price)}}</div>
+                                        грн
+                                    </div>
+                                    <div class="prod-card-available">
+                                        {% if product.status == 'active' %}
+                                        в наявності
+                                        {% elif product.status == 'inactive' %}
+                                        не в наявності
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="prod-card-btns">
+                        <button class="col-1 tofav" data-id="{{product.id}}" data-name="{{ product.name }}"
+                            data-image="{{ product.image_url.split(',')[0] }}" data-price="{{ product.price }}">
+                            <img src="{{ url_for('static', filename='images/heart.svg') }}" width="25px"
+                                height="30px" />
+                        </button>
+                        <button class="col-2 tobuy" data-id="{{product.id}}" data-name="{{ product.name }}"
+                            data-image="{{ product.image_url.split(',')[0] }}" data-price="{{ product.price }}">
+                            <img src="{{ url_for('static', filename='images/cart-svgrepo-com (1).svg') }}" width="30px"
+                                height="30px" />
+                        </button>
+                    </div>
+                </div>
+                {% endfor %}
+                {% endif %}
+
+                <div class="prod-card unable">
+                    <img class="prod-card-img" src="{{ url_for('static', filename='images/dobryva-cat.jpg') }}" />
                     <div class="prod-card-text">
                         <div class="prod-card-name">
-                            {{ product.name }}
+                            Огірки Арктика F1 (корнішон партенокарпік) ранні 35-38 днів (10 шт)
                         </div>
                         <div class="prod-card-info">
                             <div class="prod-card-cat">
-                                {{ category_name }}
+                                Овочі
                             </div>
                             <div class="prod-card-side">
                                 <div class="prod-card-money">
-                                    <div class="prod-card-price">{{'{:,.2f}'.format(product.price)}}</div>
+                                    <div class="prod-card-price">290,00</div>
                                     грн
                                 </div>
                                 <div class="prod-card-available">
-                                    {% if product.status == 'active' %}
-                                    в наявності
-                                    {% elif product.status == 'inactive' %}
                                     не в наявності
-                                    {% endif %}
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <div class="prod-card-btns">
+                        <button class="col-1 tofav">
+                            <img src="{{ url_for('static', filename='images/heart.svg') }}" width="25px"
+                                height="30px" />
+                        </button>
+                        <button class="col-2 tobuy">
+                            <img src="{{ url_for('static', filename='images/cart-svgrepo-com (1).svg') }}" width="30px"
+                                height="30px" />
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div id="popout" class="popout-basket">
+                <div class="popout-info">
+                    <div class="one-line">
+                        <div class="popout-title">
+                            Кошик
+                        </div>
+                        <button id="close-btn" class="close-btn">
+                            X
+                        </button>
+                    </div>
+                    <table id="popout-table" class="popout-table">
+                    </table>
+                    <div id="final-price" class="final-price">
+                        До сплати: 60 грн
+                    </div>
+                </div>
+                <a href="form-page.html">
+                    <button class="popout-btn">
+                        Оформити замовлення
+                    </button>
                 </a>
-                <div class="prod-card-btns">
-                    <button class="col-1 tofav" data-id="{{product.id}}" data-name="{{ product.name }}" data-image="{{ product.image_url.split(',')[0] }}" data-price="{{ product.price }}">
-                        <img src="{{ url_for('static', filename='images/heart.svg') }}" width="25px" height="30px" />
-                    </button>
-                    <button class="col-2 tobuy" data-id="{{product.id}}" data-name="{{ product.name }}" data-image="{{ product.image_url.split(',')[0] }}" data-price="{{ product.price }}">
-                        <img src="{{ url_for('static', filename='images/cart-svgrepo-com (1).svg') }}" width="30px" height="30px" />
-                    </button>
-                </div>
             </div>
-            {% endfor %}
-            {% endif %}
-            
-            <div class="prod-card unable">
-                <img class="prod-card-img" src="{{ url_for('static', filename='images/dobryva-cat.jpg') }}" />
-                <div class="prod-card-text">
-                    <div class="prod-card-name">
-                        Огірки Арктика F1 (корнішон партенокарпік) ранні 35-38 днів (10 шт)
-                    </div>
-                    <div class="prod-card-info">
-                        <div class="prod-card-cat">
-                            Овочі
-                        </div>
-                        <div class="prod-card-side">
-                            <div class="prod-card-money">
-                                <div class="prod-card-price">290,00</div>
-                                грн
-                            </div>
-                            <div class="prod-card-available">
-                                не в наявності
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="prod-card-btns">
-                    <button class="col-1 tofav">
-                        <img src="{{ url_for('static', filename='images/heart.svg') }}" width="25px" height="30px" />
-                    </button>
-                    <button class="col-2 tobuy">
-                        <img src="{{ url_for('static', filename='images/cart-svgrepo-com (1).svg') }}" width="30px" height="30px" />
-                    </button>
-                </div>
-            </div>
-
-        </div>
-        <div id="popout" class="popout-basket">
-            <div class="popout-info">
-                <div class="one-line">
-                    <div class="popout-title">
-                        Кошик
-                    </div>
-                    <button id="close-btn" class="close-btn">
-                        X
-                    </button>
-                </div>
-                <table id="popout-table" class="popout-table">
-                </table>
-                <div id="final-price" class="final-price">
-                    До сплати: 60 грн
-                </div>
-            </div>
-            <a href="form-page.html">
-                <button class="popout-btn">
-                    Оформити замовлення
-                </button>
-            </a>
-        </div>
     </section>
-    
     {% include 'footer.html' %}
     <script src="{{ url_for('static', filename='scripts/addToBasket.js') }}"></script>
     <script src="{{ url_for('static', filename='scripts/header.js') }}"></script>

@@ -4,12 +4,11 @@ function showDropDown(){
 function hideDropDown(){
     document.getElementById("categories-dropdown").classList.remove("show");
 }
-
 document.addEventListener("DOMContentLoaded", function () {
     const menuToggle = document.getElementById("menu-toggle");
     const menuClose = document.getElementById("menu-close");
     const menu = document.getElementById("menu");
-  
+
     menuToggle.addEventListener("click", function () {
         menu.classList.toggle("open");
     });

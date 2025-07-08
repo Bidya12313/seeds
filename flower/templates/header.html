@@ -1,4 +1,4 @@
-<div class="top">
+ <div class="top">
     <button id="menu-toggle">☰</button> 
     <div class="soc-media">
         <div class="popover-container">
@@ -44,17 +44,11 @@
                 <img src="{{ url_for('static', filename='images/heart.svg') }}" width="25px" height="30px" />
             </button>
         </a>
-        <div class="cart-text">
-            <p>Список побажань</p>
-        </div>
         <a href="/basket">
             <button class="cart-btn">
                 <img src="{{ url_for('static', filename='images/cart-svgrepo-com (1).svg') }}" width="30px" height="30px" />
             </button>
         </a>
-        <div class="cart-text">
-            <p>Корзина</p>
-        </div>
     </div>
 </div>
 <div class="menu">
@@ -66,14 +60,15 @@
             </a>
         </li>
         <li class="menu-list-el">
-
-            <div class="dropdown" onmouseenter="showDropDown()" onmouseleave="hideDropDown()">
-                <a class="el-a" href="/categories">
-                    Каталог
-                    <div class="arr">
+            <div class="dropdown" onmouseenter="showDropDown()" onmouseleave="hideDropDown()" onclick="showDropDown()">
+                <div class="el-a">
+                    <a href="/categories">
+                        Каталог
+                    </a>
+                    <div class="arr" onclick="showDropDown()">
                         ▼
                     </div>
-                </a>
+                </div>
                 <ul id="categories-dropdown" class="cat-dropdown">
                 </ul>
             </div>

@@ -6,7 +6,10 @@ function addToBasket(id, name, image, price, quantity){
     else{
         basket = [];
     }
-    basket.push({id, name, image, price, quantity});
+    const sameElement = basket.find(item=>item.id===id)
+    if(!sameElement){
+        basket.push({id, name, image, price, quantity});
+    }
     localStorage.setItem("basket", JSON.stringify(basket));
     if( document.getElementById("popout")){
         document.getElementById("popout").style.display = "flex";
@@ -20,7 +23,10 @@ function addToLikelist(id, name, image, price){
     else{
         likelist = [];
     }
-    likelist.push({id, name, image, price});
+    const sameElement = likelist.find(item=>item.id===id)
+    if(!sameElement){
+        likelist.push({id, name, image, price});
+    }
     localStorage.setItem("likelist", JSON.stringify(likelist));
 }
 

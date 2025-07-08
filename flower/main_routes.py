@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, flash, redirect, url_for, request
 
 from database.filter_category_queries import get_products_by_category, get_product, get_similar_products, get_products_by_info_below
+from database.reviews_queries import get_rewievs_all, add_new_review
 from database.models import Product, Category, Manufacturer
 from database.engine import session_factory as SessionFactory
 
@@ -24,9 +25,19 @@ def garantee():
     return render_template("garantee.html")
 
 
-@main_routes.route('/reviews')
+@main_routes.route('/reviews', methods=["GET", "POST"])
 def reviews():
-    return render_template("reviews.html")
+    if request.method == "POST":
+        username = request.form.get('username')
+        comment = request.form.get('comment')
+        rating = int(request.form.get('rating'))
+        print("username:", request.form.get('username'))
+        print("comment:", request.form.get('comment'))
+        print("rating:", request.form.get('rating'))
+        add_new_review(username, comment, rating)
+        return redirect('/reviews')
+    all_reviews = get_rewievs_all()
+    return render_template("reviews.html", all_reviews=all_reviews)
 
 
 @main_routes.route('/categories')

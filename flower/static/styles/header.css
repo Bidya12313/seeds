@@ -29,6 +29,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    gap:10px;
   }
   
   .favourites {
@@ -43,28 +44,22 @@
     text-align: right;
   }
   
-  .cart-text>p {
-    margin: 0;
-  }
-  
   .cart-btn {
     background: none;
     border-radius: 50px;
     border: 1px black solid;
     height: 55px;
     width: 55px;
-    font-size: 24px;
   }
   
   .cart-btn:hover {
     background-color: #FFBBD6;
   }
-  
-  .cart-text {
-    margin: 10px;
-    font-size: 20px;
+  #dropdown-btn{
+    background-color: transparent;
+    border: none;
+    justify-self: center;
   }
-  
   .menu {
     margin: 30px 0;
     padding: 0;
@@ -196,11 +191,19 @@
         border-right: none;
         text-align: left;
     }
-  
+  .menu-list-el:hover{
+    background-color: transparent;
+  }
     .el-a {
         font-size: 24px;
     }
-  
+    .cat-dropdown{
+      background-color: transparent;
+      box-shadow: none;
+    }
+    .cat-dropdown>li{
+      padding: 2px;
+    }
     /* Open menu state */
     #menu.open {
         transform: translateX(0);
