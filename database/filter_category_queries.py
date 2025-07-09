@@ -21,6 +21,7 @@ def get_products_by_info_below(country_slug: str = None, manufacturer_slug: str 
             manufacturer = session.execute(get_manufacturer).scalars().first()
             get_products_list = select(Product).filter(Product.manufacturer_id==manufacturer.id)
             products_list = session.execute(get_products_list).scalars().all()
+            print(products_list)
             
         if country_slug:
             get_products_list = select(Product).filter(Product.country_slug==country_slug)

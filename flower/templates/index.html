@@ -87,6 +87,7 @@
                 <a class="more-link" href="/reviews">Переглянути все →</a>
             </div>
             <div class="main-review-container">
+                {% for review in all_reviews %}
                 <div class="main-review">
                     <div class="stars-main-review">
                         <img src="../static/images/material-symbols_star-rounded.svg" width="35px" />
@@ -96,37 +97,10 @@
                         <img src="../static/images/material-symbols_star-rounded.svg" width="35px" />
                     </div>
                     <div class="text-main-review">
-                        Насіння зійшло усе відсотків уже на четвертий день. Прийшло разом з інструкцією, що дуже
-                        корисно, адже висаджую вперше. 
+                        {{ review.comment }}
                     </div>
                 </div>
-                <div class="main-review">
-                    <div class="stars-main-review">
-                        <img src="../static/images/material-symbols_star-rounded.svg" width="35px" />
-                        <img src="../static/images/material-symbols_star-rounded.svg" width="35px" />
-                        <img src="../static/images/material-symbols_star-rounded.svg" width="35px" />
-                        <img src="../static/images/material-symbols_star-rounded.svg" width="35px" />
-                        <img src="../static/images/material-symbols_star-rounded.svg" width="35px" />
-                    </div>
-                    <div class="text-main-review">
-                        Вже четвертий год, якщо я не помиляюсь, а може і більше замовляю насіння і жодного разу не була
-                        розчарована. Квіти чарівні і всі по сортам. Рекомендую
-                    </div>
-                </div>
-
-                <div class="main-review">
-                    <div class="stars-main-review">
-                        <img src="../static/images/material-symbols_star-rounded.svg" width="35px" />
-                        <img src="../static/images/material-symbols_star-rounded.svg" width="35px" />
-                        <img src="../static/images/material-symbols_star-rounded.svg" width="35px" />
-                        <img src="../static/images/material-symbols_star-rounded.svg" width="35px" />
-                        <img src="../static/images/material-symbols_star-rounded.svg" width="35px" />
-                    </div>
-                    <div class="text-main-review">
-                        Насіння зійшло усе відсотків уже на четвертий день. Прийшло разом з інструкцією, що дуже
-                        корисно, адже висаджую вперше. 
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </section>
         <section class="delivery-section" id="delivery">

@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, flash, redirect, url_for, request
 
 from database.filter_category_queries import get_products_by_category, get_product, get_similar_products, get_products_by_info_below
-from database.reviews_queries import get_rewievs_all, add_new_review
+from database.reviews_queries import get_rewievs_all, add_new_review, get_latest_reviews
 from database.models import Product, Category, Manufacturer
 from database.engine import session_factory as SessionFactory
 
@@ -12,7 +12,8 @@ main_routes = Blueprint('main', __name__)
 
 @main_routes.route('/')
 def main():
-    return render_template("index.html")
+    all_reviews = get_latest_reviews()
+    return render_template("index.html", all_reviews=all_reviews)
 
 
 @main_routes.route('/contacts')
