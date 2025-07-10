@@ -1,4 +1,5 @@
 from sqlalchemy import select, desc
+from sqlalchemy.orm import joinedload
 
 from .engine import session_factory
 from .models import Category, Product, Manufacturer
@@ -19,14 +20,13 @@ def get_products_by_info_below(country_slug: str = None, manufacturer_slug: str 
         if manufacturer_slug:
             get_manufacturer = select(Manufacturer).filter(Manufacturer.slug==manufacturer_slug)
             manufacturer = session.execute(get_manufacturer).scalars().first()
-            get_products_list = select(Product).filter(Product.manufacturer_id==manufacturer.id)
+            get_products_list = select(Product).filter(Product.manufacturer_id==manufacturer.id).options(joinedload(Product.category))
             products_list = session.execute(get_products_list).scalars().all()
-            print(products_list)
             
         if country_slug:
-            get_products_list = select(Product).filter(Product.country_slug==country_slug)
+            get_products_list = select(Product).filter(Product.country_slug==country_slug).options(joinedload(Product.category))
             products_list = session.execute(get_products_list).scalars().all()
-        
+
         return products_list
 
 
