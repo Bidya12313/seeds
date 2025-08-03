@@ -53,7 +53,7 @@
     width: 240px;
     display: flex;
     flex-direction: column;
-    min-height: 100%;
+    min-height: 440px;
     align-self: center;
     justify-content: space-between;
 }
@@ -109,8 +109,9 @@
 .prod-card-btns button{
     background-color: white;
     border: 1px solid #C0C0C0;
+    width: 100%;
 }
-.prod-card-btns button:hover{
+.prod-card-btns button:hover, .prod-card-btns .fav-exist{
     background-color: #FFBBD6;
 }
 @media (max-width: 1500px){

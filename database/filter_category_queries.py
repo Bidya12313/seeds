@@ -1,4 +1,4 @@
-from sqlalchemy import select, desc
+from sqlalchemy import select, desc, or_, and_, func
 from sqlalchemy.orm import joinedload
 
 from .engine import session_factory
@@ -10,7 +10,7 @@ def get_products_by_category(slug: str):
         get_category = select(Category).filter(Category.slug==slug)
         category = session.execute(get_category).scalars().first()
 
-        get_products_list = select(Product).filter(Product.category_id==category.id)
+        get_products_list = select(Product).filter(Product.category_id==category.id).options(joinedload(Product.category))
         products_list_by_category = session.execute(get_products_list).scalars().all()
     return products_list_by_category, category.name
 
@@ -55,3 +55,27 @@ def get_similar_products(product: Product, limit: int = 12):
             .limit(limit)
         )
     return session.execute(query).scalars().all()
+
+
+def get_similar_products_to_cart_and_wishlist(product_list: list, limit: int = 12):
+    with session_factory() as session:
+        if not product_list:
+            return session.query(Product).order_by(Product.manufacturer_id.desc()).limit(limit).options(joinedload(Product.category)).all()
+        conditions = []
+        ids = list(map(int, product_list))
+        products = session.query(Product).filter(Product.id.in_(ids)).options(joinedload(Product.category)).all()
+
+        for prod in products:
+            name_key = prod.name.split()[0] if prod.name else ""
+
+            cond = and_(
+                Product.category_id == prod.category_id,
+                Product.manufacturer_id == prod.manufacturer_id,
+                Product.name.ilike(f"%{name_key}%"),
+            )
+            conditions.append(cond)
+
+        similar_products = session.query(Product).filter(or_(*conditions)).limit(limit).options(joinedload(Product.category)).all()
+        for i in similar_products:
+            print(i.name)
+        return similar_products

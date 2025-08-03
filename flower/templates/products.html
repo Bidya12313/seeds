@@ -4,11 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles/products.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles/productpage.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles/header.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles/popout.css') }}">
+    <link rel="stylesheet" href="../static/styles/style.css">
+    <link rel="stylesheet" href="../static/styles/popout.css">
+    <link rel="stylesheet" href="../static/styles/basket.css">
+    <link rel="stylesheet" href="../static/styles/products.css">
+    <link rel="stylesheet" href="../static/styles/productpage.css'">
+    <link rel="stylesheet" href="../static/styles/products.css">
+    <link rel="stylesheet" href="../static/styles/header.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
@@ -37,9 +39,7 @@
             <div class="conf-wrapper">
                 <div id="cats" class="bar-title bar-name">
                     Категорії
-                    <div class="arr">
-                        ▼
-                    </div>
+                    <div class="arr">▼</div>
                 </div>
                 <ul id="category-list" class="cats" style="display: block;">
                 </ul>
@@ -47,38 +47,14 @@
             <div class="conf-wrapper">
                 <div id="producers" class="bar-title bar-name">
                     Виробники
-                    <div class="arr">
-                        ▼
-                    </div>
+                    <div class="arr">▼</div>
                 </div>
                 <ul class="producers" style="display: block;">
+                    {% for manufacturer in manufacturers %}
                     <li>
-                        Добрива →
+                        <a href="/products/manufacturer/{{ manufacturer.slug }}">{{ manufacturer.name }}</a>
                     </li>
-                    <li>
-                        Добрива →
-                    </li>
-                    <li>
-                        Добрива →
-                    </li>
-                    <li>
-                        Добрива →
-                    </li>
-                    <li>
-                        Добрива →
-                    </li>
-                    <li>
-                        Добрива →
-                    </li>
-                    <li>
-                        Добрива →
-                    </li>
-                    <li>
-                        Добрива →
-                    </li>
-                    <li>
-                        Добрива →
-                    </li>
+                    {% endfor %}
                 </ul>
             </div>
         </div>
@@ -119,83 +95,59 @@
                         </div>
                     </a>
                     <div class="prod-card-btns">
-                        <button class="col-1 tofav" data-id="{{product.id}}" data-name="{{ product.name }}"
+                            <button class="col-1 tofav" data-id="{{product.id}}" data-name="{{ product.name }}"
                             data-image="{{ product.image_url.split(',')[0] }}" data-price="{{ product.price }}">
                             <img src="{{ url_for('static', filename='images/heart.svg') }}" width="25px"
-                                height="30px" />
+                            height="30px" />
                         </button>
-                        <button class="col-2 tobuy" data-id="{{product.id}}" data-name="{{ product.name }}"
+                         {% if product.status == 'active' %}
+                        <button class="col-2 tobuy" data-id="{{ product.id }}" data-name="{{ product.name }}"
                             data-image="{{ product.image_url.split(',')[0] }}" data-price="{{ product.price }}">
                             <img src="{{ url_for('static', filename='images/cart-svgrepo-com (1).svg') }}" width="30px"
                                 height="30px" />
                         </button>
+                        {% elif product.status == 'inactive' %}
+                        <button>
+                            <img src="{{ url_for('static', filename='images/cart-svgrepo-com (1).svg') }}" width="30px"
+                                height="30px" />
+                        </button>
+                        {% endif %}
                     </div>
                 </div>
                 {% endfor %}
                 {% endif %}
-
-                <div class="prod-card unable">
-                    <img class="prod-card-img" src="{{ url_for('static', filename='images/dobryva-cat.jpg') }}" />
-                    <div class="prod-card-text">
-                        <div class="prod-card-name">
-                            Огірки Арктика F1 (корнішон партенокарпік) ранні 35-38 днів (10 шт)
-                        </div>
-                        <div class="prod-card-info">
-                            <div class="prod-card-cat">
-                                Овочі
-                            </div>
-                            <div class="prod-card-side">
-                                <div class="prod-card-money">
-                                    <div class="prod-card-price">290,00</div>
-                                    грн
-                                </div>
-                                <div class="prod-card-available">
-                                    не в наявності
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="prod-card-btns">
-                        <button class="col-1 tofav">
-                            <img src="{{ url_for('static', filename='images/heart.svg') }}" width="25px"
-                                height="30px" />
-                        </button>
-                        <button class="col-2 tobuy">
-                            <img src="{{ url_for('static', filename='images/cart-svgrepo-com (1).svg') }}" width="30px"
-                                height="30px" />
-                        </button>
-                    </div>
-                </div>
             </div>
-            <div id="popout" class="popout-basket">
-                <div class="popout-info">
-                    <div class="one-line">
-                        <div class="popout-title">
-                            Кошик
-                        </div>
-                        <button id="close-btn" class="close-btn">
-                            X
-                        </button>
-                    </div>
-                    <table id="popout-table" class="popout-table">
-                    </table>
-                    <div id="final-price" class="final-price">
-                        До сплати: 60 грн
-                    </div>
-                </div>
-                <a href="form-page.html">
-                    <button class="popout-btn">
-                        Оформити замовлення
-                    </button>
-                </a>
-            </div>
+        </div>
     </section>
+    <div id="popout" class="popout-basket">
+        <div class="popout-info">
+            <div class="one-line" style="display: flex; justify-content: space-between;">
+                <div class="popout-title">
+                    Кошик
+                </div>
+                <button id="close-btn" class="close-btn">
+                    X
+                </button>
+            </div>
+            <table id="popout-table" class="popout-table">
+            </table>
+            <div id="final-price" class="final-price">
+                До сплати: 60 грн
+            </div>
+        </div>
+        <a href="/cart">
+            <button class="popout-btn">
+                Оформити замовлення
+            </button>
+        </a>
+    </div>
     {% include 'footer.html' %}
-    <script src="{{ url_for('static', filename='scripts/addToBasket.js') }}"></script>
-    <script src="{{ url_for('static', filename='scripts/header.js') }}"></script>
-    <script src="{{ url_for('static', filename='scripts/products.js') }}"></script>
-    <script src="{{ url_for('static', filename='scripts/popout.js') }}"></script>
-    <script src="{{ url_for('static', filename='scripts/tolike.js') }}"></script>
+    <script src="../static/scripts/addToBasket.js"></script>
+    <script src="../static/scripts/popout.js"></script>
+    <script src="../static/scripts/header.js"></script>
+    <script src="../static/scripts/tobuy.js"></script>
+    <script src="../static/scripts/products.js"></script>
+    <script src="../static/scripts/tolike.js"></script>
 </body>
 
 </html>

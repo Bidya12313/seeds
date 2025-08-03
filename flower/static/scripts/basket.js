@@ -3,23 +3,12 @@ let basketItems = JSON.parse(localStorage.getItem("basket")) | [];
 const price = document.getElementById("price");
 let totalprice = 0;
 
-const buy = document.querySelectorAll(".tobuy");
-buy.forEach((item) => {
-  item.addEventListener("click", () => {
-    const id = item.dataset.id;
-    const name = item.dataset.name;
-    const image = item.dataset.image;
-    const price = parseFloat(item.dataset.price);
-    addToBasket(id, name, image, price);
-    updateBasket();
-  });
-});
-
 function updateBasket() {
-  basketItems = JSON.parse(localStorage.getItem("basket")) || [];
+  basketItems = JSON.parse(localStorage.getItem("basket"));
   const isValid =
-    basketItems.length > 0 &&
-    basketItems.some((product) => product.price !== null);
+    basketItems.length > 0
+    //  &&
+    // basketItems.some((product) => product.price !== null);
   if (!isValid) {
     document.getElementById("no-items").style.display = "block";
     document.getElementById("continue-btn").style.display = "none";
@@ -53,8 +42,9 @@ function updateBasket() {
     </tr>`;
     totalprice = 0;
     basketItems.map((item) => {
-      if (item.price != null) {
-        totalprice += item.price * 1;
+      // if (item.price != null) {
+      console.log(item.quantity)
+        totalprice += item.price * item.quantity;
         container.innerHTML += `
         <tr id="row-${item.name}">
         <td>
@@ -76,16 +66,16 @@ function updateBasket() {
         </a>
         </td>
         <td>
-        ${item.price.toFixed(2)}
+         ${item.price.toFixed(2)}
         </td>
         <td>
-        1
+        ${item.quantity}
         </td>
         <td>
-        ${(item.price * item.quantity).toFixed(2)}
+         ${(item.price * item.quantity).toFixed(2)}
         </td>
         </tr>`;
-      }
+      // }
       price.innerText = totalprice.toFixed(2);
     });
   }
@@ -97,4 +87,63 @@ function deleteRow(button) {
   localStorage.setItem("basket", JSON.stringify(basketItems));
   button.closest("tr").remove();
   updateBasket();
+  setBuyCard();
 }
+const favCard = document.querySelectorAll(".tofav");
+let likeItemsProducts = JSON.parse(localStorage.getItem("likelist"));
+
+function setFavCard() {
+  favCard.forEach((item) => {
+    likeItems = JSON.parse(localStorage.getItem("likelist"));
+    if (likeItems.some((element) => element.id === item.dataset.id)) {
+      item.classList.add("fav-exist");
+    } else if (item.classList.contains("fav-exist")) {
+      item.classList.remove("fav-exist");
+    }
+  });
+}
+setFavCard();
+const buyCard = document.querySelectorAll(".tobuy");
+let basketItemsToBuy = JSON.parse(localStorage.getItem("basket"));
+function addingToBuy(item) {
+  addToBasket(
+    item.dataset.id,
+    item.dataset.name,
+    item.dataset.image,
+    parseFloat(item.dataset.price)
+  );
+}
+function toggleToBuy(item) {
+  basketItemsToBuy = JSON.parse(localStorage.getItem("basket"));
+  if (!basketItemsToBuy.some((element) => element.id === item.dataset.id)) {
+    addingToBuy(item);
+    item.classList.add("fav-exist");
+    window.dispatchEvent(new CustomEvent("addedToBasket"));
+  }
+}
+buyCard.forEach((item) => {
+  item.addEventListener("click", () => {
+    toggleToBuy(item);
+  });
+});
+function setBuyCard() {
+  buyCard.forEach((item) => {
+    const id = item.dataset.id;
+    basketItemsToBuy = JSON.parse(localStorage.getItem("basket"));
+    if (basketItemsToBuy.some((item) => item.id === id)) {
+      item.classList.add("fav-exist");
+    } else if (item.classList.contains("fav-exist")) {
+      item.classList.remove("fav-exist");
+    }
+  });
+}
+setBuyCard();
+window.addEventListener("storage", () => {
+  setFavCard();
+  setBuyCard();
+  updateBasket();
+});
+window.addEventListener("addedToBasket", ()=>{
+  setBuyCard();
+  updateBasket();
+})

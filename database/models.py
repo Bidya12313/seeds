@@ -57,3 +57,11 @@ class Review(Base):
     rating: Mapped[int] = mapped_column(nullable=False)
     created_at: Mapped[datetime] = mapped_column(DateTime, default=func.now())
 
+
+class Feedback(Base):
+    __tablename__ = "feedbacks"
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    username: Mapped[str] = mapped_column(String(100), nullable=True)
+    contact: Mapped[str] = mapped_column(String(100), nullable=True)
+    comment: Mapped[str] = mapped_column(String(1000))

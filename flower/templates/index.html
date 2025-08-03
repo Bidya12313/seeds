@@ -182,20 +182,19 @@
                     </div>
                 </div>
                 <div class="col-2">
-                    <form>
+                    <form method="POST" action="/">
                         <div class="top-form">
                             <p class="col-1">
                                 Форма зворотнього зв'язку
                             </p>
                             <div class="col-2">
-                                <input placeholder="Ваше ім'я">
+                                <input name="username" placeholder="Ваше ім'я" maxlength="50" required>
                             </div>
                             <div class="col-2">
-
-                                <input placeholder="Email/телефон">
+                                <input name="contact" placeholder="Email/телефон" maxlength="50" required>
                             </div>
                         </div>
-                        <textarea class="form-text-field"></textarea>
+                        <textarea name="comment" class="form-text-field" maxlength="1000" required></textarea>
                         <button type="submit">Надіслати</button>
                     </form>
                 </div>

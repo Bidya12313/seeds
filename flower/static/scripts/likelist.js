@@ -1,5 +1,27 @@
 const container_like = document.getElementById("likelist");
 let likeItems = JSON.parse(localStorage.getItem("likelist"));
+
+const favCard = document.querySelectorAll(".tofav");
+favCard.forEach((item) => {
+  item.addEventListener("click", () => {
+    let likeItemsToLike = JSON.parse(localStorage.getItem("likelist"));
+    const id = item.dataset.id;
+    if (likeItemsToLike.some((item) => item.id === id)) {
+      likeItemsToLike = likeItemsToLike.filter((element) => element.id !== id);
+      if (likeItemsToLike.length === 0) likeItemsToLike = [];
+      localStorage.setItem("likelist", JSON.stringify(likeItemsToLike));
+      item.classList.remove("fav-exist");
+    } else {
+      const name = item.dataset.name;
+      const image = item.dataset.image;
+      const price = parseFloat(item.dataset.price);
+      addToLikelist(id, name, image, price);
+      item.classList.add("fav-exist");
+    }
+    window.dispatchEvent(new CustomEvent("updatedLikeList"));
+  });
+});
+
 function updateLikeList() {
   likeItems = JSON.parse(localStorage.getItem("likelist"));
   if (likeItems.length === 0) {
@@ -61,24 +83,67 @@ function updateLikeList() {
   }
 }
 updateLikeList();
+function setFavCard() {
+  favCard.forEach((item) => {
+    likeItems = JSON.parse(localStorage.getItem("likelist"));
+    if (likeItems.some((element) => element.id === item.dataset.id)) {
+      item.classList.add("fav-exist");
+    } else if (item.classList.contains("fav-exist")) {
+      item.classList.remove("fav-exist");
+    }
+  });
+}
+setFavCard();
+const buyCard = document.querySelectorAll(".tobuy");
+let basketItemsToBuy = JSON.parse(localStorage.getItem("basket"));
+function addingToBuy(item) {
+  addToBasket(
+    item.dataset.id,
+    item.dataset.name,
+    item.dataset.image,
+    parseFloat(item.dataset.price)
+  );
+}
+function toggleToBuy(item) {
+  basketItemsToBuy = JSON.parse(localStorage.getItem("basket"));
+  if (!basketItemsToBuy.some((element) => element.id === item.dataset.id)) {
+    addingToBuy(item);
+    item.classList.add("fav-exist");
+    window.dispatchEvent(new CustomEvent("addedToBasket"));
+  } else if (item.classList.contains("fav-exist")) {
+    window.location.href = "/basket.html";
+  }
+}
+buyCard.forEach((item) => {
+  item.addEventListener("click", () => {
+    toggleToBuy(item);
+  });
+});
+function setBuyCard() {
+  buyCard.forEach((item) => {
+    const id = item.dataset.id;
+    basketItemsToBuy = JSON.parse(localStorage.getItem("basket"));
+    if (basketItemsToBuy.some((item) => item.id === id)) {
+      item.classList.add("fav-exist");
+    } else if (item.classList.contains("fav-exist")) {
+      item.classList.remove("fav-exist");
+    }
+  });
+}
+setBuyCard();
+window.addEventListener("storage", () => {
+  updateLikeList();
+  setFavCard();
+  setBuyCard();
+});
 
 function deleteRow(button) {
   likeItems = likeItems.filter((item) => item.name != button.id);
   localStorage.setItem("likelist", JSON.stringify(likeItems));
   button.closest("tr").remove();
   updateLikeList();
+  setFavCard();
 }
-const fav = document.querySelectorAll(".fav-btn.tofav");
-fav.forEach((item) => {
-  item.addEventListener("click", () => {
-    const id = item.dataset.id;
-    const name = item.dataset.name;
-    const image = item.dataset.image;
-    const price = parseFloat(item.dataset.price);
-    addToLikelist(id, name, image, price);
-    updateLikeList();
-  });
-});
 
 function setupAddToBasketBtns() {
   const toBasketBtns = document.querySelectorAll(".add-to-basket-btn");
@@ -91,7 +156,18 @@ function setupAddToBasketBtns() {
       addToBasket(id, name, image, price, 1);
       deleteRow(item);
       updatePopout();
-      updateLikeList();
+      setFavCard();
+      setBuyCard();
     });
   });
 }
+window.addEventListener("deleteRowInPopout", () => {
+  setBuyCard();
+});
+window.addEventListener("addedToBasket", () => {
+  updatePopout();
+  setBuyCard();
+});
+window.addEventListener("updatedLikeList", () => {
+  updateLikeList();
+});

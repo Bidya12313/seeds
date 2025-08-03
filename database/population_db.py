@@ -1,6 +1,6 @@
 from .engine import Base, db_engine
 
-from .models import Category, Product, Manufacturer, Review
+from .models import Category, Product, Manufacturer, Review, Feedback
 
 
 tables = [
@@ -8,6 +8,7 @@ tables = [
     Product.__table__,
     Manufacturer.__table__,
     Review.__table__,
+    Feedback.__table__
 ]
 
 

@@ -26,12 +26,12 @@ function updatePopout() {
             </button>
             </td>
             <td style="border:none">
-            <a href="/products/${item.id}">
+            <a href="${item.id}">
             <img src="/static/images/products/${item.image}" width="50px"/>
             </a>
             </td>
             <td style="border:none">
-            <a href="/products/${item.id}">
+            <a href="${item.id}">
             ${item.name}
             </a>
             </td>
@@ -51,9 +51,13 @@ updatePopout();
 
 function deletePopoutRow(button) {
   basketItems = basketItems.filter((item) => item.name != button.id);
+  if(basketItems.length === 0){
+    document.getElementById("popout").style.display = "none";
+  }
   localStorage.setItem("basket", JSON.stringify(basketItems));
   button.closest("tr").remove();
   updatePopout();
+  window.dispatchEvent(new Event('deleteRowInPopout'));
 }
 const buy_popout = document.querySelectorAll(".buy-btn");
 buy_popout.forEach((item) => {
