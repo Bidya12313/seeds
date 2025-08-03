@@ -11,6 +11,7 @@ services:
       - .env_prod
     depends_on:
       - db
+    command: flask run
 
   db:
     image: postgres:16
