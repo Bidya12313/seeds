@@ -1,5 +1,5 @@
-# 1. Використовуємо базовий образ Python 3.10
-FROM python:3.10.9-slim
+# 1. Використовуємо базовий образ Python 3.10 під amd64
+FROM --platform=linux/amd64 python:3.10.9-slim
 
 # 2. Встановлюємо робочу директорію в контейнері
 WORKDIR /app
@@ -11,7 +11,7 @@ COPY . .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # 5. Виставляємо змінні середовища
-ENV FLASK_APP=app/app.py
+ENV FLASK_APP=app.py
 ENV FLASK_RUN_HOST=0.0.0.0
 
 # 6. Відкриваємо порт
