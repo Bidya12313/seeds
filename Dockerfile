@@ -11,11 +11,11 @@ COPY . .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # 5. Виставляємо змінні середовища
-ENV FLASK_APP=app.py
+ENV FLASK_APP=flower/app.py
 ENV FLASK_RUN_HOST=0.0.0.0
 
 # 6. Відкриваємо порт
 EXPOSE 5000
 
 # 7. Запускаємо Flask
-CMD ["flask", "run"]
+CMD ["python", "-m", "flower.app"]
