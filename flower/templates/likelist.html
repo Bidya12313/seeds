@@ -23,7 +23,7 @@
         <div class="title">
             Список бажань
         </div>
-        <div overflow-x: auto;>
+        <div style="overflow-x: auto;">
             <div id="no-items" class="no-items">
                 Додайте товари до списку бажань :)
             </div>
@@ -58,10 +58,16 @@
                 <a class="prev-cat">❮</a>
                 <div class="card-container">
                     {% for similar_product in similar_products %}
-                        <div class="prod-card">
+                    {% if similar_product.status == 'active' %}
+                    <div class="prod-card">
+                        {% elif similar_product.status == 'inactive' %}
+                        <div class="prod-card unable">
+                            {% endif %}
                             <a href="/products/{{ similar_product.id }}">
                                 <img class="prod-card-img"
                                     src="{{ url_for('static', filename='images/products/' ~ similar_product.image_url.split(',')[0].strip()) }}" />
+                            </a>
+                            <a href="/products/{{ similar_product.id }}">
                                 <div class="prod-card-text">
                                     <div class="prod-card-name">
                                         {{ similar_product.name }}
@@ -72,7 +78,8 @@
                                         </div>
                                         <div class="prod-card-side">
                                             <div class="prod-card-money">
-                                                <div class="prod-card-price">{{'{:,.2f}'.format(similar_product.price)}}</div>
+                                                <div class="prod-card-price">{{'{:,.2f}'.format(similar_product.price)}}
+                                                </div>
                                                 грн
                                             </div>
                                             <div class="prod-card-available">
@@ -87,51 +94,65 @@
                                 </div>
                             </a>
                             <div class="prod-card-btns">
-                                <button class="col-1 tofav" data-id="{{similar_product.id}}" data-name="{{ similar_product.name }}"
-                        data-image="{{ similar_product.image_url.split(',')[0] }}" data-price="{{ similar_product.price }}">
+                                <button class="col-1 tofav" data-id="{{similar_product.id}}"
+                                    data-name="{{ similar_product.name }}"
+                                    data-image="{{ similar_product.image_url.split(',')[0] }}"
+                                    data-price="{{ similar_product.price }}" data-status="{{ similar_product.status }}">
                                     <img src="../static/images/heart.svg" width="25px" height="30px" />
                                 </button>
-                                <button class="col-2 tobuy" data-id="{{similar_product.id}}" data-name="{{ similar_product.name }}"
-                        data-image="{{ similar_product.image_url.split(',')[0] }}" data-price="{{ similar_product.price }}">
+                                {% if similar_product.status == 'active' %}
+                                <button class="col-2 tobuy" data-id="{{ similar_product.id }}"
+                                    data-name="{{ similar_product.name }}"
+                                    data-image="{{ similar_product.image_url.split(',')[0] }}"
+                                    data-price="{{ similar_product.price }}" data-quantity="1">
                                     <img src="../static/images/cart-svgrepo-com (1).svg" width="30px" height="30px" />
                                 </button>
+                                {% elif similar_product.status == 'inactive' %}
+                                <button>
+                                    <img src="{{ url_for('static', filename='images/cart-svgrepo-com (1).svg') }}"
+                                        width="30px" height="30px" />
+                                </button>
+                                {% endif %}
                             </div>
                         </div>
-                    {% endfor %}
+                        {% endfor %}
+                    </div>
+                    <a class="next-cat">❯</a>
                 </div>
-                <a class="next-cat">❯</a>
             </div>
         </div>
-    </div>
-    <div id="popout" class="popout-basket">
-        <div class="popout-info">
-            <div class="one-line">
-                <div class="popout-title">
-                    Кошик
+        <div id="popout" class="popout-basket">
+            <div class="popout-info">
+                <div class="one-line" style="display: flex; justify-content: space-between;">
+                    <div class="popout-title">
+                        Кошик
+                    </div>
+                    <button id="close-btn" class="close-btn">
+                        X
+                    </button>
                 </div>
-                <button id="close-btn" class="close-btn">
-                    X
+                <div style="overflow-x: auto; max-width: 100%;">
+                    <table id="popout-table" class="popout-table">
+                    </table>
+                </div>
+                <div id="final-price" class="final-price">
+                    До сплати: 60 грн
+                </div>
+            </div>
+            <a href="/cart">
+                <button class="popout-btn">
+                    Оформити замовлення
                 </button>
-            </div>
-            <table id="popout-table" class="popout-table">
-            </table>
-            <div id="final-price" class="final-price">
-                До сплати: 60 грн
-            </div>
+            </a>
         </div>
-        <a href="/cart">
-            <button class="popout-btn">
-                Оформити замовлення
-            </button>
-        </a>
-    </div>
 
-    {% include 'footer.html' %}
-    <script src="../static/scripts/moreCard.js"></script>
-    <script src="../static/scripts/addToBasket.js"></script>
-    <script src="../static/scripts/popout.js"></script>
-    <script src="../static/scripts/likelist.js"></script>
-    <script src="../static/scripts/header.js"></script>
+        {% include 'footer.html' %}
+        <script src="{{ url_for('static', filename='scripts/checkLists.js') }}"></script>
+        <script src="../static/scripts/moreCard.js"></script>
+        <script src="../static/scripts/addToBasket.js"></script>
+        <script src="../static/scripts/popout.js"></script>
+        <script src="../static/scripts/likelist.js"></script>
+        <script src="../static/scripts/header.js"></script>
 </body>
 
 </html>

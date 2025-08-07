@@ -27,6 +27,7 @@
     cursor: pointer;
 }
 .popout-table{
+    min-width: 200px;
     justify-self: center;
     margin-top: 5px;
     display: block;
@@ -61,6 +62,10 @@
 }
 @media (max-width: 900px){
     .popout-basket{
-        width: auto;
+        width: 100%;
+        right: 0;
+    }
+    .popout-table{
+        justify-self: unset;
     }
   }

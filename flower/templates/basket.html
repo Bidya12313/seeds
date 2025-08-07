@@ -17,7 +17,7 @@
 
 <body>
     {% include 'header.html' %}
-    
+
     <section class="basket-section">
         <div class="title">
             Кошик
@@ -29,7 +29,8 @@
             <table id="basket">
                 <tr>
                     <th>
-                        <img src="{{ url_for('static', filename='images/material-symbols_delete-outline.svg') }}" width="30px" />
+                        <img src="{{ url_for('static', filename='images/material-symbols_delete-outline.svg') }}"
+                            width="30px" />
                     </th>
                     <th>
                         Фото
@@ -57,7 +58,7 @@
             грн
         </div>
         <div class="finish-buy-btn">
-            <a href="/about-us">
+            <a href="/categories">
                 <button id="continue-btn" class="continue-btn">
                     Продовжити покупки
                 </button>
@@ -80,12 +81,18 @@
 
             <div class="card-carousel">
                 <a class="prev-cat">❮</a>
-                <div class="card-container">    
+                <div class="card-container">
                     {% for similar_product in similar_products %}
-                        <div class="prod-card">
+                    {% if similar_product.status == 'active' %}
+                    <div class="prod-card">
+                        {% elif similar_product.status == 'inactive' %}
+                        <div class="prod-card unable">
+                            {% endif %}
                             <a href="/products/{{ similar_product.id }}">
                                 <img class="prod-card-img"
                                     src="{{ url_for('static', filename='images/products/' ~ similar_product.image_url.split(',')[0].strip()) }}" />
+                            </a>
+                            <a href="/products/{{ similar_product.id }}">
                                 <div class="prod-card-text">
                                     <div class="prod-card-name">
                                         {{ similar_product.name }}
@@ -96,7 +103,8 @@
                                         </div>
                                         <div class="prod-card-side">
                                             <div class="prod-card-money">
-                                                <div class="prod-card-price">{{'{:,.2f}'.format(similar_product.price)}}</div>
+                                                <div class="prod-card-price">{{'{:,.2f}'.format(similar_product.price)}}
+                                                </div>
                                                 грн
                                             </div>
                                             <div class="prod-card-available">
@@ -111,29 +119,41 @@
                                 </div>
                             </a>
                             <div class="prod-card-btns">
-                                <button class="col-1 tofav" data-id="{{similar_product.id}}" data-name="{{ similar_product.name }}"
-                        data-image="{{ similar_product.image_url.split(',')[0] }}" data-price="{{ similar_product.price }}">
+                                <button class="col-1 tofav" data-id="{{similar_product.id}}"
+                                    data-name="{{ similar_product.name }}"
+                                    data-image="{{ similar_product.image_url.split(',')[0] }}"
+                                    data-price="{{ similar_product.price }}" data-status="{{ similar_product.status }}">
                                     <img src="../static/images/heart.svg" width="25px" height="30px" />
                                 </button>
-                                <button class="col-2 tobuy" data-id="{{similar_product.id}}" data-name="{{ similar_product.name }}"
-                        data-image="{{ similar_product.image_url.split(',')[0] }}" data-price="{{ similar_product.price }}">
+                                {% if similar_product.status == 'active' %}
+                                <button class="col-2 tobuy" data-id="{{ similar_product.id }}"
+                                    data-name="{{ similar_product.name }}"
+                                    data-image="{{ similar_product.image_url.split(',')[0] }}"
+                                    data-price="{{ similar_product.price }}" data-quantity="1">
                                     <img src="../static/images/cart-svgrepo-com (1).svg" width="30px" height="30px" />
                                 </button>
+                                {% elif similar_product.status == 'inactive' %}
+                                <button>
+                                    <img src="{{ url_for('static', filename='images/cart-svgrepo-com (1).svg') }}"
+                                        width="30px" height="30px" />
+                                </button>
+                                {% endif %}
                             </div>
                         </div>
-                    {% endfor %}
+                        {% endfor %}
+                    </div>
+                    <a class="next-cat">❯</a>
                 </div>
-                <a class="next-cat">❯</a>
             </div>
         </div>
-    </div>
 
-    {% include 'footer.html' %}
-    <script src="../static/scripts/tolike.js"></script>
-    <script src="../static/scripts/moreCard.js"></script>
-    <script src="../static/scripts/addToBasket.js"></script>
-    <script src="../static/scripts/header.js"></script>
-    <script src="../static/scripts/basket.js"></script>
+        {% include 'footer.html' %}
+        <script src="{{ url_for('static', filename='scripts/checkLists.js') }}"></script>
+        <script src="../static/scripts/tolike.js"></script>
+        <script src="../static/scripts/moreCard.js"></script>
+        <script src="../static/scripts/addToBasket.js"></script>
+        <script src="../static/scripts/header.js"></script>
+        <script src="../static/scripts/basket.js"></script>
 </body>
 
 </html>

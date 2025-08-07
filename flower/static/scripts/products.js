@@ -34,7 +34,8 @@ function addingToBuy(item) {
     item.dataset.id,
     item.dataset.name,
     item.dataset.image,
-    parseFloat(item.dataset.price)
+    parseFloat(item.dataset.price),
+    parseInt(item.dataset.quantity)
   );
 }
 function toggleToBuy(item) {
@@ -44,7 +45,7 @@ function toggleToBuy(item) {
     item.classList.add("fav-exist");
     window.dispatchEvent(new CustomEvent("addedToBasket"));
   } else if (item.classList.contains("fav-exist")) {
-    window.location.href = "/basket.html";
+    window.location.href = "/basket";
   }
   
 }
@@ -70,12 +71,12 @@ let category = params.get("category");
 cat_arr.forEach((item) => {
   if (item.name === category) {
     document.getElementById("category-list").innerHTML += `
-                            <a href="prducts?category=${item.slug}"><li id="${item.name}" class="categories chosen">
+                            <a href="/products?category=${item.slug}"><li id="${item.name}" class="categories chosen">
                             ${item.name} →
                         </li></a>`;
   } else {
     document.getElementById("category-list").innerHTML += `
-                            <a href="products?category=${item.slug}"><li id="${item.name}" class="categories">
+                            <a href="/products?category=${item.slug}"><li id="${item.name}" class="categories">
                             ${item.name} →
                         </li></a>`;
   }
@@ -84,9 +85,7 @@ window.addEventListener("storage", () => {
   setFavCard();
   setBuyCard();
 });
-window.addEventListener('localStorageUpdated', () => {
-  updatePopout();
-});
+
 window.addEventListener('addedToBasket', () => {
   setBuyCard();
   updatePopout();

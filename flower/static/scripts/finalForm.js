@@ -60,3 +60,48 @@ function deleteRow(button) {
   button.closest("tr").remove();
   updateBasket();
 }
+
+document.querySelector(".final-form").addEventListener("submit", function (event) {
+  event.preventDefault();
+
+  if (!basketItems || basketItems.length === 0) {
+    alert("Кошик порожній");
+    return;
+  }
+
+const customer_data = {
+  name: document.getElementById("client-name").value,
+  contact: document.getElementById("client-phone").value,
+  mail: document.getElementById("email").value,
+  address: document.getElementById("client-post").value,
+  payment: document.getElementById("client-payment").value
+};
+
+  fetch("/make_order", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    
+    body: JSON.stringify({
+      basket: basketItems,
+      client_total: totalprice,
+      customer: customer_data
+    })
+  })
+    .then(response => response.json())
+    .then(data => {
+      if (data.status === "success") {
+        localStorage.removeItem("basket");
+        window.location.href = "/order_success";
+      } else if (data.status === "redirect" && data.location) {
+        window.location.href = data.location;
+      } else {
+        alert("Помилка: " + (data.message || "невалідні дані."));
+      }
+    })
+    .catch(error => {
+      console.error("Помилка при надсиланні замовлення:", error);
+      alert("Виникла технічна помилка. Спробуйте пізніше.");
+    });
+});

@@ -14,7 +14,7 @@ function addToBasket(id, name, image, price, quantity) {
     document.getElementById("popout").style.display = "flex";
   }
 }
-function addToLikelist(id, name, image, price) {
+function addToLikelist(id, name, image, price, status) {
   let likelist;
   if (localStorage.getItem("likelist").length != null) {
     likelist = JSON.parse(localStorage.getItem("likelist"));
@@ -23,7 +23,7 @@ function addToLikelist(id, name, image, price) {
   }
   const sameElement = likelist.find((item) => item.id === id);
   if (!sameElement) {
-    likelist.push({ id, name, image, price });
+    likelist.push({ id, name, image, price, status });
   }
   localStorage.setItem("likelist", JSON.stringify(likelist));
 }

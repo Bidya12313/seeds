@@ -60,4 +60,10 @@
         flex-direction: column-reverse;
         gap: 10px;
     }
-  }
+}
+@media (max-width: 420px){
+    .same-line{
+        display: flex;
+        flex-direction: column;
+    }
+}

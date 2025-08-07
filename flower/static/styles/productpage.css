@@ -151,7 +151,7 @@ hr{
 }
 
 @media (max-width:1350px) {
-    .buy-btn-not-available, .buy-btn{
+    .buy-btn-not-available, .buy-btn, .continue-btn{
         font-size: 25px;
     }
 }
@@ -159,8 +159,10 @@ hr{
     .product-img-text-wrap{
         display: flex;
         flex-direction: column;
+        padding: 10px;
     }
     .main-photo{
+        width: 90%;
         display: flex;
         justify-self: center;
     }
@@ -176,7 +178,7 @@ hr{
     }
 }
 @media (max-width:465px){
-    .buy-btn-not-available, .buy-btn{
+    .buy-btn-not-available, .buy-btn, .continue-btn{
         width: max-content;
         padding: 10px 20px;
         white-space: normal;
@@ -195,7 +197,7 @@ hr{
     }
 }
 @media (max-width:390px){
-    .buy-btn-not-available, .buy-btn{
+    .buy-btn-not-available, .buy-btn, .continue-btn{
         margin-left: 0;
         font-size: 15px;
     }

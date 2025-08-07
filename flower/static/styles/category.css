@@ -15,7 +15,7 @@
         grid-template-columns: repeat(2, 1fr);
     }
 }
-@media (max-width: 425px){
+@media (max-width: 535px){
     .category-section{
         padding: 10px;
     }

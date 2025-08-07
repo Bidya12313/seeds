@@ -65,3 +65,18 @@ class Feedback(Base):
     username: Mapped[str] = mapped_column(String(100), nullable=True)
     contact: Mapped[str] = mapped_column(String(100), nullable=True)
     comment: Mapped[str] = mapped_column(String(1000))
+
+
+class Order(Base):
+    __tablename__ = "orders"
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    customer_name: Mapped[str] = mapped_column(String(100), nullable=False)
+    customer_contact: Mapped[str] = mapped_column(String(100), nullable=False)
+    customer_mail: Mapped[str] = mapped_column(String(100), nullable=True)
+    delivery_address: Mapped[str] = mapped_column(String(255), nullable=True)
+    payment_method: Mapped[str] = mapped_column(String(50), nullable=True)
+    total_price: Mapped[float] = mapped_column(nullable=False)
+    items: Mapped[str] = mapped_column(String(2000), nullable=False)
+    status: Mapped[str] = mapped_column(String(50), default="замовлено", nullable=False)
+    created_at: Mapped[datetime] = mapped_column(default=datetime.utcnow)

@@ -41,3 +41,29 @@ form button[type="submit"]{
     margin-top: 20px;
     font-size: 32px;
 }
+@media (max-width: 425px){
+    .final-form{
+        padding: 20px;
+    }
+    .input-group input, .input-group select{
+    background: none;
+    border: #C0C0C0 1px solid;
+    border-radius: 20px;
+    padding: 10px;
+    text-align: left;
+    width: 100%;
+    }
+    .final-form .title{
+        font-size: 20px;
+    }
+    .input-group label{
+        font-size: 12px;
+    }
+    .sum-text{
+        display: flex;
+        flex-direction: column;
+    }
+    form button[type="submit"]{
+    font-size: 20px;
+}
+}

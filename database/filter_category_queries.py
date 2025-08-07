@@ -53,7 +53,7 @@ def get_similar_products(product: Product, limit: int = 12):
             .where(Product.id != product.id)
             .where(Product.name.ilike(f"%{first_word}%"))
             .limit(limit)
-        )
+        ).options(joinedload(Product.category))
     return session.execute(query).scalars().all()
 
 

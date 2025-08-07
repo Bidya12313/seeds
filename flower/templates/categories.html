@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,23 +10,26 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
-    <script src="../static/scripts/header.js" defer></script> 
+    <script src="../static/scripts/header.js" defer></script>
     <title>"Семена"</title>
 </head>
+
 <body>
     {% include 'header.html' %}
-    
+
     <section class="category-section">
         <div class="top-section">
             <div class="title">Категорії</div>
         </div>
-        
+
         <div id="card-container" class="category-cards">
         </div>
-        </section>
-        
-        {% include 'footer.html' %}
-        <script src="../static/scripts/header.js"></script>
-        <script src="../static/scripts/categories.js"></script>
-    </body>
+    </section>
+
+    {% include 'footer.html' %}
+    <script src="{{ url_for('static', filename='scripts/checkLists.js') }}"></script>
+    <script src="../static/scripts/header.js"></script>
+    <script src="../static/scripts/categories.js"></script>
+</body>
+
 </html>

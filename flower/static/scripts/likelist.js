@@ -15,7 +15,8 @@ favCard.forEach((item) => {
       const name = item.dataset.name;
       const image = item.dataset.image;
       const price = parseFloat(item.dataset.price);
-      addToLikelist(id, name, image, price);
+      const status = item.dataset.status;
+      addToLikelist(id, name, image, price, status);
       item.classList.add("fav-exist");
     }
     window.dispatchEvent(new CustomEvent("updatedLikeList"));
@@ -43,6 +44,14 @@ function updateLikeList() {
         </th>
         </tr>`;
     likeItems.map((item) => {
+      const btnToStatus =
+        item.status === "active"
+          ? `<button id="${item.name}" class="add-to-basket-btn" data-id="${item.id}" data-name="${item.name}" 
+                data-image="${item.image}" 
+                data-price="${item.price}">
+                Додати до кошика
+                </button>`
+          : `<button id="${item.name}" class="not-add-to-basket-btn">Не в наявності</button>`;
       container_like.innerHTML += `
             <tr>
             <td>
@@ -69,13 +78,7 @@ function updateLikeList() {
                 ${Number(item.price).toFixed(2)}
                 </td>
                 <td>
-                <button id="${item.name}" class="add-to-basket-btn" data-id="${
-        item.id
-      }" data-name="${item.name}" 
-                data-image="${item.image}" 
-                data-price="${item.price}">
-                Додати до кошика
-                </button>
+                ${btnToStatus}
                 </td>
                 </tr>`;
     });
@@ -101,7 +104,8 @@ function addingToBuy(item) {
     item.dataset.id,
     item.dataset.name,
     item.dataset.image,
-    parseFloat(item.dataset.price)
+    parseFloat(item.dataset.price),
+    parseInt(item.dataset.quantity)
   );
 }
 function toggleToBuy(item) {
@@ -111,7 +115,7 @@ function toggleToBuy(item) {
     item.classList.add("fav-exist");
     window.dispatchEvent(new CustomEvent("addedToBasket"));
   } else if (item.classList.contains("fav-exist")) {
-    window.location.href = "/basket.html";
+    window.location.href = "/basket";
   }
 }
 buyCard.forEach((item) => {

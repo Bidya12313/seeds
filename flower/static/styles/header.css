@@ -213,3 +213,8 @@
       display: none;
     }
   }
+  @media (max-width: 320px){
+  .logo{
+    width: 150px;
+  }
+}

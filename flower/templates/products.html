@@ -19,7 +19,7 @@
 
 <body>
     {% include 'header.html' %}
-
+<main style="min-height: calc(100vh - 80px);">
     <section class="product-section">
         <div class="product-conf col-1">
             <div class="conf-wrapper">
@@ -32,7 +32,7 @@
                     <option value="cheap">Ціною (від дешевшого до дорожчого)</option>
                     <option value="abc">Алфавітом (від А до Я)</option>
                     <option value="xyz">Алфавітом (від Я до А)</option>
-
+                    
                 </select>
             </div>
             <div class="conf-wrapper">
@@ -67,8 +67,10 @@
                     {% endif %}
                     <a href="/products/{{ product.id }}">
                         <img class="prod-card-img"
-                            src="{{ url_for('static', filename='images/products/' ~ product.image_url.split(',')[0].strip()) }}"
-                            width="240px" height="240px" />
+                        src="{{ url_for('static', filename='images/products/' ~ product.image_url.split(',')[0].strip()) }}"
+                        width="240px" height="240px" />
+                    </a>
+                    <a href="/products/{{ product.id }}">
                         <div class="prod-card-text">
                             <div class="prod-card-name">
                                 {{ product.name }}
@@ -94,42 +96,45 @@
                         </div>
                     </a>
                     <div class="prod-card-btns">
-                            <button class="col-1 tofav" data-id="{{product.id}}" data-name="{{ product.name }}"
-                            data-image="{{ product.image_url.split(',')[0] }}" data-price="{{ product.price }}">
-                            <img src="{{ url_for('static', filename='images/heart.svg') }}" width="25px"
-                            height="30px" />
-                        </button>
-                         {% if product.status == 'active' %}
-                        <button class="col-2 tobuy" data-id="{{ product.id }}" data-name="{{ product.name }}"
-                            data-image="{{ product.image_url.split(',')[0] }}" data-price="{{ product.price }}">
-                            <img src="{{ url_for('static', filename='images/cart-svgrepo-com (1).svg') }}" width="30px"
-                                height="30px" />
-                        </button>
-                        {% elif product.status == 'inactive' %}
-                        <button>
-                            <img src="{{ url_for('static', filename='images/cart-svgrepo-com (1).svg') }}" width="30px"
-                                height="30px" />
-                        </button>
-                        {% endif %}
-                    </div>
-                </div>
-                {% endfor %}
+                        <button class="col-1 tofav" data-id="{{product.id}}" data-name="{{ product.name }}"
+                        data-image="{{ product.image_url.split(',')[0] }}" data-price="{{ product.price }}" data-status="{{ product.status }}">
+                        <img src="{{ url_for('static', filename='images/heart.svg') }}" width="25px"
+                        height="30px" />
+                    </button>
+                    {% if product.status == 'active' %}
+                    <button class="col-2 tobuy" data-id="{{ product.id }}" data-name="{{ product.name }}"
+                    data-image="{{ product.image_url.split(',')[0] }}" data-price="{{ product.price }}" data-quantity="1">
+                    <img src="{{ url_for('static', filename='images/cart-svgrepo-com (1).svg') }}" width="30px"
+                    height="30px" />
+                </button>
+                {% elif product.status == 'inactive' %}
+                <button>
+                    <img src="{{ url_for('static', filename='images/cart-svgrepo-com (1).svg') }}" width="30px"
+                    height="30px" />
+                </button>
                 {% endif %}
             </div>
         </div>
-    </section>
-    <div id="popout" class="popout-basket">
-        <div class="popout-info">
-            <div class="one-line" style="display: flex; justify-content: space-between;">
-                <div class="popout-title">
-                    Кошик
-                </div>
-                <button id="close-btn" class="close-btn">
-                    X
-                </button>
+        {% endfor %}
+        {% endif %}
+    </div>
+</div>
+</section>
+</main>
+<div id="popout" class="popout-basket">
+    <div class="popout-info">
+        <div class="one-line" style="display: flex; justify-content: space-between;">
+            <div class="popout-title">
+                Кошик
             </div>
-            <table id="popout-table" class="popout-table">
-            </table>
+            <button id="close-btn" class="close-btn">
+                X
+            </button>
+            </div>
+            <div style="overflow-x: auto; max-width: 100%;">
+                <table id="popout-table" class="popout-table">
+                </table>
+            </div>
             <div id="final-price" class="final-price">
                 До сплати: 60 грн
             </div>
@@ -141,12 +146,11 @@
         </a>
     </div>
     {% include 'footer.html' %}
-    <script src="../static/scripts/addToBasket.js"></script>
-    <script src="../static/scripts/popout.js"></script>
-    <script src="../static/scripts/header.js"></script>
-    <script src="../static/scripts/tobuy.js"></script>
-    <script src="../static/scripts/products.js"></script>
-    <script src="../static/scripts/tolike.js"></script>
+    <script src="{{ url_for('static', filename='scripts/addToBasket.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/popout.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/header.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/products.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/tolike.js') }}"></script>
 </body>
 
 </html>

@@ -1,9 +1,11 @@
-from flask import Blueprint, render_template, flash, redirect, url_for, request
+from flask import Blueprint, render_template, redirect, url_for, request, session, jsonify
 
 from database.filter_category_queries import get_products_by_category, get_product, get_similar_products, get_products_by_info_below, get_similar_products_to_cart_and_wishlist
 from database.reviews_queries import get_rewievs_all, add_new_review, get_latest_reviews
 from database.feedback_queries import add_new_feedback
 from database.manufacturers_queries import get_manufacturers
+from database.basket_queries import get_approved_basket_items
+from database.order_queries import add_order_to_db
 from database.models import Product, Category, Manufacturer
 from database.engine import session_factory as SessionFactory
 
@@ -103,6 +105,67 @@ def basket():
     similar_products = get_similar_products_to_cart_and_wishlist(product_list=[])
     print("Повертаємо схожі товари з ID:", [p.id for p in similar_products])
     return render_template("basket.html", similar_products=similar_products)
+
+
+@main_routes.route('/make_order', methods=['POST'])
+def make_order():
+    try:
+        data = request.get_json()
+        basket = data.get('basket', [])
+        client_total = data.get('client_total', 0)
+
+        if not basket:
+            return jsonify({'status': 'error', 'message': 'Кошик порожній'})
+
+        customer_data = data.get("customer", {})
+        customer_name = customer_data.get("name", "Клієнт")
+        customer_contact = customer_data.get("contact", "Без контакту")
+        customer_mail = customer_data.get("email", "Без почти")
+        delivery_address = customer_data.get("address", "Немає адреси")
+        payment_method = customer_data.get("payment", "Невідомо")
+
+        success, message, approved_basket_items = get_approved_basket_items(basket, client_total)
+        if not success:
+            return jsonify({'status': 'error', 'message': message})
+
+        product_map = {int(item["id"]): item for item in basket}
+        basket_dicts = []
+        for product in approved_basket_items:
+            item = product_map.get(product.id, {})
+            basket_dicts.append({
+                "name": product.name,
+                "quantity": item.get("quantity", 1),
+                "price": product.price
+            })
+        print(basket_dicts)
+
+        save_success = add_order_to_db(
+            customer_name,
+            customer_contact,
+            customer_mail,
+            delivery_address,
+            payment_method,
+            client_total,
+            basket_dicts
+        )
+
+        if not save_success:
+            return jsonify({'status': 'redirect', 'location': '/order_reject'})
+
+        return jsonify({'status': 'success'})
+    
+    except Exception as e:
+        return jsonify({'status': 'error', 'message': 'Помилка на сервері'}), 500
+    
+
+@main_routes.route('/order_success')
+def order_success():
+    return render_template('success.html')
+
+
+@main_routes.route('/order_reject')
+def order_reject():
+    return render_template('reject.html')
 
 
 @main_routes.route('/about-us')

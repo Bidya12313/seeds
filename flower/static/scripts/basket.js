@@ -43,7 +43,6 @@ function updateBasket() {
     totalprice = 0;
     basketItems.map((item) => {
       // if (item.price != null) {
-      console.log(item.quantity)
         totalprice += item.price * item.quantity;
         container.innerHTML += `
         <tr id="row-${item.name}">
@@ -110,7 +109,8 @@ function addingToBuy(item) {
     item.dataset.id,
     item.dataset.name,
     item.dataset.image,
-    parseFloat(item.dataset.price)
+    parseFloat(item.dataset.price),
+    parseInt(item.dataset.quantity)
   );
 }
 function toggleToBuy(item) {

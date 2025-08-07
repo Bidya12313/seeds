@@ -518,3 +518,22 @@ footer .col-3{
     padding: 0;
   }
 }
+@media (max-width: 600px){
+.about-us-section{
+  padding: 20px;
+}
+}
+@media (max-width: 360px){
+  .delivery-text{
+    margin: 0;
+  }
+}
+@media (max-width: 320px){
+  .delivery-grid{
+    display: flex;
+    flex-direction: column;
+  }
+  .logo{
+    width: 150px;
+  }
+}

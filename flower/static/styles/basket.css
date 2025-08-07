@@ -90,7 +90,7 @@ table tr th:last-child {
 .buy-btn:hover{
     background-color: #c44276;
 }
-.add-to-basket-btn{
+.add-to-basket-btn, .not-add-to-basket-btn{
     background: #FED8E7;
     border: none;
     border-radius: 10px;
@@ -104,4 +104,21 @@ table tr th:last-child {
 .no-items{
     text-align: center;
     display: none;
+}
+@media (max-width: 700px){
+    .basket-section, .likelist-section{
+        padding: 0;
+    }
+    .basket-section .title, .likelist-section .title{
+        margin-left: 30px;
+    }
+    table{
+        justify-self:auto;
+    }
+    td{
+        min-width: none;
+    }
+    .finish-buy-btn{
+        flex-direction: column;
+    }
 }

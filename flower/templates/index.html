@@ -143,7 +143,7 @@
                             </div>
                         </div>
                         <div class="contacts">
-                            <img src="../static/images/basil_viber-outline.svg" width="50px" />
+                            <img src="../static/images/basil_viber-outline.svg" width="50px"/>
                             <div>
                                 (093) 823-68-08
                             </div>
@@ -151,19 +151,23 @@
                     </div>
                     <div class="row-2">
                         <div class="contacts">
-                            <img src="../static/images/facebook.svg" width="50px" />
-                            <div>
-                                Артем-Вита
-                            </div>
-                            <div>
-                                Трайно
-                            </div>
+                            <a href="https://www.facebook.com/Vita.Trayno/" style="display: flex; flex-direction: column; align-items: center;">
+                                <img src="../static/images/facebook.svg" width="50px" />
+                                <div>
+                                    Артем-Вита
+                                </div>
+                                <div>
+                                    Трайно
+                                </div>
+                            </a>
                         </div>
                         <div class="contacts">
-                            <img src="../static/images/youtube.svg" width="50px" />
-                            <div>
-                                Вита Трайно
-                            </div>
+                            <a href="https://www.youtube.com/@vita_trayno" style="display: flex; flex-direction: column; align-items: center;">
+                                <img src="../static/images/youtube.svg" width="50px" />
+                                <div>
+                                    Вита Трайно
+                                </div>
+                            </a>
                         </div>
                     </div>
                     <div class="row-3">
@@ -202,6 +206,7 @@
         </section>
     </div>
     {% include 'footer.html' %}
+    <script src="{{ url_for('static', filename='scripts/checkLists.js') }}"></script>
     <script src="../static/scripts/header.js"></script>
     <script src="../static/scripts/categories.js"></script>
     <script src="../static/scripts/script.js"></script>
