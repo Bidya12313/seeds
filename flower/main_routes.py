@@ -86,25 +86,31 @@ def product_page(product_id):
 
 @main_routes.route('/wishlist', methods=["GET", "POST"])
 def likelist():
+    similar_products = []
+
     if request.method == "POST":
         data = request.get_json()
         raw_ids = data.get("ids", [])
         ids = list(map(int, raw_ids))
         similar_products = get_similar_products_to_cart_and_wishlist(product_list=ids)
-    similar_products = get_similar_products_to_cart_and_wishlist(product_list=[])
+    else:
+        similar_products = get_similar_products_to_cart_and_wishlist(product_list=[])
+
     return render_template("likelist.html", similar_products=similar_products)
 
 
 @main_routes.route('/basket', methods=["GET", "POST"])
 def basket():
+    similar_products = []
+
     if request.method == "POST":
         data = request.get_json()
         raw_ids = data.get("ids", [])
         ids = list(map(int, raw_ids))
-        print("Отримано айді:", ids) 
         similar_products = get_similar_products_to_cart_and_wishlist(product_list=ids)
-    similar_products = get_similar_products_to_cart_and_wishlist(product_list=[])
-    print("Повертаємо схожі товари з ID:", [p.id for p in similar_products])
+    else:
+        similar_products = get_similar_products_to_cart_and_wishlist(product_list=[])
+
     return render_template("basket.html", similar_products=similar_products)
 
 

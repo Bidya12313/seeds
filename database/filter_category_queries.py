@@ -89,25 +89,52 @@ def get_similar_products(product: Product, limit: int = 12):
     return session.execute(query).scalars().all()
 
 
-def get_similar_products_to_cart_and_wishlist(product_list: list, limit: int = 12):
+def get_similar_products_to_cart_and_wishlist(product_list: list[int], limit: int = 20):
+    if not product_list:
+        with session_factory() as session:
+            return session.execute(
+                select(Product)
+                .filter(Product.status == 'active')
+                .order_by(Product.id.desc())
+                .limit(limit)
+                .options(joinedload(Product.category), joinedload(Product.manufacturer))
+            ).scalars().all()
+
     with session_factory() as session:
-        if not product_list:
-            return session.query(Product).order_by(Product.manufacturer_id.desc()).limit(limit).options(joinedload(Product.category)).all()
+        products = session.execute(
+            select(Product)
+            .filter(Product.id.in_(product_list))
+            .options(joinedload(Product.category), joinedload(Product.manufacturer))
+        ).scalars().all()
+
         conditions = []
-        ids = list(map(int, product_list))
-        products = session.query(Product).filter(Product.id.in_(ids)).options(joinedload(Product.category)).all()
 
         for prod in products:
-            name_key = prod.name.split()[0] if prod.name else ""
+            if not prod.name:
+                continue
 
-            cond = and_(
+            name_key = prod.name.split()[0]
+
+            conditions.append(and_(
                 Product.category_id == prod.category_id,
                 Product.manufacturer_id == prod.manufacturer_id,
                 Product.name.ilike(f"%{name_key}%"),
-            )
-            conditions.append(cond)
+                Product.id.notin_(product_list)
+            ))
 
-        similar_products = session.query(Product).filter(or_(*conditions)).limit(limit).options(joinedload(Product.category)).all()
-        for i in similar_products:
-            print(i.name)
-        return similar_products
+        if not conditions:
+            return []
+
+        query = (
+            select(Product)
+            .filter(or_(*conditions))
+            .filter(Product.status == 'active')
+            .order_by(Product.id.desc())
+            .limit(limit)
+            .options(joinedload(Product.category), joinedload(Product.manufacturer))
+        )
+
+        results = session.execute(query).scalars().all()
+
+        unique = {product.id: product for product in results}.values()
+        return list(unique)
