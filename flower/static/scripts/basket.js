@@ -5,10 +5,7 @@ let totalprice = 0;
 
 function updateBasket() {
   basketItems = JSON.parse(localStorage.getItem("basket"));
-  const isValid =
-    basketItems.length > 0
-    //  &&
-    // basketItems.some((product) => product.price !== null);
+  const isValid = basketItems.length > 0;
   if (!isValid) {
     document.getElementById("no-items").style.display = "block";
     document.getElementById("continue-btn").style.display = "none";
@@ -42,9 +39,8 @@ function updateBasket() {
     </tr>`;
     totalprice = 0;
     basketItems.map((item) => {
-      // if (item.price != null) {
-        totalprice += item.price * item.quantity;
-        container.innerHTML += `
+      totalprice += item.price * item.quantity;
+      container.innerHTML += `
         <tr id="row-${item.name}">
         <td>
         <button id="${
@@ -68,18 +64,49 @@ function updateBasket() {
          ${item.price.toFixed(2)}
         </td>
         <td>
-        ${item.quantity}
+          <div class="product-quantity-basket">
+            <button data-id=${item.id} data-action="minus" class="add-minus">
+              -
+            </button>
+            <div data-id=${item.id} class="quantity-amount">
+              ${item.quantity}
+            </div>
+            <button data-id=${item.id} data-action="plus" class="add-minus">
+              +
+            </button>
+            </div>
         </td>
         <td>
          ${(item.price * item.quantity).toFixed(2)}
         </td>
         </tr>`;
-      // }
       price.innerText = totalprice.toFixed(2);
     });
   }
 }
 updateBasket();
+
+container.addEventListener("click", (e) => {
+  if (e.target.classList.contains("add-minus")) {
+    const id = parseInt(e.target.dataset.id);
+    const action = e.target.dataset.action;
+
+    const product = basketItems.find((p) => p.id == id);
+    if (product) {
+      if (action == "plus") {
+        product.quantity++;
+      } else if (action == "minus" && product.quantity > 1) {
+        product.quantity--;
+      }
+      const index = basketItems.findIndex((p) => p.id === product.id);
+      if (index !== -1) {
+        basketItems[index] = product;
+      }
+      localStorage.setItem("basket", JSON.stringify(basketItems));
+      updateBasket();
+    }
+  }
+});
 
 function deleteRow(button) {
   basketItems = basketItems.filter((item) => item.name != button.id);
@@ -143,7 +170,7 @@ window.addEventListener("storage", () => {
   setBuyCard();
   updateBasket();
 });
-window.addEventListener("addedToBasket", ()=>{
+window.addEventListener("addedToBasket", () => {
   setBuyCard();
   updateBasket();
-})
+});

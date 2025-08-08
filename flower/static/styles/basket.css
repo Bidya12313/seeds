@@ -43,6 +43,16 @@ table tr td:last-child,
 table tr th:last-child {
     border-right: 0;
 }
+.product-quantity-basket{
+    display: inline-flex;
+    height: 40px;
+    align-self:end;
+    align-items: center;
+}
+.product-quantity-basket div{
+    border: #C0C0C0 1px solid;
+    text-align: center;
+}
 .delete-item{
     background: none;
     border: none;

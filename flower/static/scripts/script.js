@@ -30,12 +30,6 @@
 //                     </div>`;
 // })
 
-function showDropDown(){
-  document.getElementById("categories-dropdown").classList.toggle("show");
-}
-function hideDropDown(){
-  document.getElementById("categories-dropdown").classList.remove("show");
-}
 let slideIndex = 1;
 showSlides(slideIndex);
 

@@ -1,8 +1,9 @@
- <div class="top">
-    <button id="menu-toggle">☰</button> 
+<div class="top">
+    <button id="menu-toggle">☰</button>
     <div class="soc-media">
         <div class="popover-container">
-            <img src="{{ url_for('static', filename='images/phone.svg') }}" width="40px" class="soc-media-img popover-trigger" />
+            <img src="{{ url_for('static', filename='images/phone.svg') }}" width="40px"
+                class="soc-media-img popover-trigger" />
             <div class="popover">
                 (093) 823-68-08
                 <br>
@@ -10,7 +11,8 @@
             </div>
         </div>
         <div class="popover-container">
-            <img src="{{ url_for('static', filename='images/basil_viber-outline.svg') }}" width="40px" class="soc-media-img popover-trigger" />
+            <img src="{{ url_for('static', filename='images/basil_viber-outline.svg') }}" width="40px"
+                class="soc-media-img popover-trigger" />
             <div class="popover">
                 (093) 823-68-08
             </div>
@@ -18,14 +20,16 @@
         <a href="https://www.facebook.com/share/197DJNWGTK/?mibextid=wwXIfr">
             <img src="{{ url_for('static', filename='images/facebook.svg') }}" width="35px" class="soc-media-img" />
         </a>
-        <a href="https://www.youtube.com/@vita_trayno">
-            <img src="{{ url_for('static', filename='images/youtube.svg') }}" width="40px" class="soc-media-img" />
+        <a href="https://www.tiktok.com/@natalia_davyskyba?_t=ZS-8wZhJ81Sqif&_r=1">
+            <img src="{{ url_for('static', filename='images/tiktok_logo.svg') }}" width="40px" class="soc-media-img" />
         </a>
         <a href="https://www.instagram.com/vitatrayno">
-            <img src="{{ url_for('static', filename='images/mdi_instagram.svg') }}" width="40px" class="soc-media-img" />
+            <img src="{{ url_for('static', filename='images/mdi_instagram.svg') }}" width="40px"
+                class="soc-media-img" />
         </a>
         <div class="popover-container">
-            <img src="{{ url_for('static', filename='images/emsil.svg') }}" width="40px" class="soc-media-img popover-trigger" />
+            <img src="{{ url_for('static', filename='images/emsil.svg') }}" width="40px"
+                class="soc-media-img popover-trigger" />
             <div class="popover">
                 traynovita@gmail.com
                 <br>
@@ -36,7 +40,8 @@
         </div>
     </div>
     <a href="/">
-        <img src="{{ url_for('static', filename='images/logo1.jpg') }}" alt="Логотип Інтернет-магазин 'Семена'" class="logo" />
+        <img src="{{ url_for('static', filename='images/logo1.jpg') }}" alt="Логотип Інтернет-магазин 'Семена'"
+            class="logo" />
     </a>
     <div class="cart-container">
         <a href="/wishlist">
@@ -46,28 +51,39 @@
         </a>
         <a href="/basket">
             <button class="cart-btn">
-                <img src="{{ url_for('static', filename='images/cart-svgrepo-com (1).svg') }}" width="30px" height="30px" />
+                <img src="{{ url_for('static', filename='images/cart-svgrepo-com (1).svg') }}" width="30px"
+                    height="30px" />
             </button>
         </a>
     </div>
 </div>
 <div class="menu">
-    <ul  id="menu" class="menu-list">
+    <ul id="menu" class="menu-list">
         <button id="menu-close">X</button>
         <li class="menu-list-el">
             <a class="el-a" href="/">
                 Головна
             </a>
         </li>
-        <li class="menu-list-el">
-            <div class="dropdown" onmouseenter="showDropDown()" onmouseleave="hideDropDown()" onclick="showDropDown()">
+           <li class="menu-list-el show-full" onmouseenter="showDropDown()" onmouseleave="hideDropDown()">
+            <div class="dropdown">
+                <a href="/categories">
+                <div class="el-a">
+                        Каталог
+                        <div id="cat-arr-full" class="arr">▼</div>
+                    </div>
+                </a>
+                <ul id="categories-dropdown-full" class="cat-dropdown">
+                </ul>
+            </div>
+        </li>
+        <li class="menu-list-el no-show-full">
+            <div class="dropdown">
                 <div class="el-a">
                     <a href="/categories">
                         Каталог
                     </a>
-                    <div class="arr" onclick="showDropDown()">
-                        ▼
-                    </div>
+                    <div id="cat-arr" class="arr" onclick="toggleDropDown()">▼</div>
                 </div>
                 <ul id="categories-dropdown" class="cat-dropdown">
                 </ul>
@@ -99,20 +115,22 @@
             </a>
         </li>
         <li class="no-show-full">
-            <a href="wishlist">
+            <a href="/wishlist">
                 <button class="cart-btn">
                     <img src="{{ url_for('static', filename='images/heart.svg') }}" width="25px" height="30px" />
                 </button>
             </a>
-            <a href="basket">
+            <a href="/basket">
                 <button class="cart-btn">
-                    <img src="{{ url_for('static', filename='images/cart-svgrepo-com (1).svg') }}" width="30px" height="30px" />
+                    <img src="{{ url_for('static', filename='images/cart-svgrepo-com (1).svg') }}" width="30px"
+                        height="30px" />
                 </button>
             </a>
         </li>
         <li class="no-show-full">
             <div class="popover-container">
-                <img src="{{ url_for('static', filename='images/phone.svg') }}" width="40px" class="soc-media-img popover-trigger" />
+                <img src="{{ url_for('static', filename='images/phone.svg') }}" width="40px"
+                    class="soc-media-img popover-trigger" />
                 <div class="popover">
                     (093) 823-68-08
                     <br>
@@ -122,30 +140,33 @@
         </li>
         <li class="no-show-full">
             <div class="popover-container">
-                <img src="{{ url_for('static', filename='images/basil_viber-outline.svg') }}" width="40px" class="soc-media-img popover-trigger" />
+                <img src="{{ url_for('static', filename='images/basil_viber-outline.svg') }}" width="40px"
+                    class="soc-media-img popover-trigger" />
                 <div class="popover">
                     (093) 823-68-08
                 </div>
             </div>
         </li>
         <li class="no-show-full">
-            <a href="https://www.facebook.com/Vita.Trayno/">
+            <a href="https://www.facebook.com/share/197DJNWGTK/?mibextid=wwXIfr">
                 <img src="{{ url_for('static', filename='images/facebook.svg') }}" width="35px" class="soc-media-img" />
             </a>
         </li>
         <li class="no-show-full">
-            <a href="https://www.youtube.com/@vita_trayno">
-                <img src="{{ url_for('static', filename='images/youtube.svg') }}" width="40px" class="soc-media-img" />
+            <a href="https://www.tiktok.com/@natalia_davyskyba?_t=ZS-8wZhJ81Sqif&_r=1">
+                <img src="{{ url_for('static', filename='images/tiktok_logo.svg') }}" width="40px" class="soc-media-img" />
             </a>
         </li>
         <li class="no-show-full">
             <a href="https://www.instagram.com/vitatrayno">
-                <img src="{{ url_for('static', filename='images/mdi_instagram.svg') }}" width="40px" class="soc-media-img" />
+                <img src="{{ url_for('static', filename='images/mdi_instagram.svg') }}" width="40px"
+                    class="soc-media-img" />
             </a>
         </li>
         <li class="no-show-full">
             <div class="popover-container">
-                <img src="{{ url_for('static', filename='images/emsil.svg') }}" width="40px" class="soc-media-img popover-trigger" />
+                <img src="{{ url_for('static', filename='images/emsil.svg') }}" width="40px"
+                    class="soc-media-img popover-trigger" />
                 <div class="popover">
                     traynovita@gmail.com
                     <br>

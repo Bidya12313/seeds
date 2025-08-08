@@ -53,27 +53,28 @@ def categories():
     return render_template("categories.html")
 
 
-@main_routes.route('/products')
-def category_products():
-    slug = request.args.get('category')
+@main_routes.route('/products/category/<category_slug>')
+def category_products(category_slug):
+    sort = request.args.get("sort", "")
     manufacturers = get_manufacturers()
-    if slug:
-        produtcs, category_name = get_products_by_category(slug)
-    return render_template("products.html", slug=slug, products=produtcs, category_name=category_name, manufacturers=manufacturers)
+    produtcs = get_products_by_category(category_slug, sort)
+    return render_template("products.html", category_slug=category_slug, products=produtcs, manufacturers=manufacturers, sort=sort)
 
 
 @main_routes.route('/products/manufacturer/<m_name>')
 def products_by_manufacturer(m_name: str):
+    sort = request.args.get("sort", "")
     manufacturers = get_manufacturers()
-    products = get_products_by_info_below(manufacturer_slug=m_name)
-    return render_template("products.html", products=products, manufacturers=manufacturers)
+    products = get_products_by_info_below(manufacturer_slug=m_name, sort=sort)
+    return render_template("products.html", products=products, manufacturers=manufacturers, sort=sort)
 
 
 @main_routes.route('/products/country/<c_name>')
 def products_by_country(c_name: str):
+    sort = request.args.get("sort", "")
     manufacturers = get_manufacturers()
-    products = get_products_by_info_below(country_slug=c_name)
-    return render_template("products.html", products=products, manufacturers=manufacturers)
+    products = get_products_by_info_below(country_slug=c_name, sort=sort)
+    return render_template("products.html", products=products, manufacturers=manufacturers, sort=sort)
 
 
 @main_routes.route('/products/<int:product_id>')

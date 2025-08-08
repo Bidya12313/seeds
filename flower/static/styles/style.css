@@ -356,6 +356,15 @@ form{
   text-align: right;
   height: 200px;
 }
+button, input[type="submit"] {
+  -webkit-appearance: none;
+  appearance: none;
+  font: inherit;
+  background: none;
+  border: none;
+  padding: 0;
+  color: inherit;
+}
 form button[type="submit"]{
   background: white;
   border-radius: 15px;
@@ -368,6 +377,7 @@ form button[type="submit"]{
 }
 form button[type="submit"]:hover, .finish-section button:hover{
   background: #FED8E7;
+  color: black;
 }
 footer {
   background-color: #FFBBD6;
@@ -454,12 +464,34 @@ footer .col-3{
   font-size: 24px;
   margin-top: 10px;
 }
+
+.toast-success {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #38a169;
+  color: white;
+  padding: 15px 20px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  font-size: 16px;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.hidden {
+  display: none;
+}
+
 @media (max-width: 1000px){
   form button[type="submit"] {
     width: 100%;
   }
 }
 @media (max-width: 768px){
+  .main-page, .about-us-section, .garantee-section{
+    margin-top: -50px;
+  }
   .contact-section, .boxes-frame, .show-reviews, .delivery-section, .contact-section, .show-categories, .garantee-section{
     padding: 20px 30px;
   }
@@ -532,8 +564,5 @@ footer .col-3{
   .delivery-grid{
     display: flex;
     flex-direction: column;
-  }
-  .logo{
-    width: 150px;
   }
 }

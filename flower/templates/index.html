@@ -107,22 +107,18 @@
             <div class="top-section">
                 <div class="title">Доставка</div>
             </div>
-            <p class="delivery-text">Доставка насіння можлива в будь-яку точку України транспортними компаніями “Нова
+            <p class="delivery-text">Доставка квітів можлива по Україні транспортними компаніями “Нова
                 Пошта” і “Укрпошта”.</p>
             <div class="delivery-grid">
                 <img src="../static/images/nova_poshta.svg" width="150px" class="col-1" />
                 <p class="col-1">Нова Пошта</p>
                 <div class="delivery-small-text col-1">
-                    Транспортні витрати пошти (від 70 грн.) + комісія за повернення грошей (20 грн + 2% від суми)
+                    Вартість доставки — від 80 грн (залежно від ваги та регіону)
                 </div>
                 <img src="../static/images/ukrposhta.svg" width="80px" class="col-2" />
                 <p class="col-2">Укрпошта</p>
                 <div class="delivery-small-text col-2">
-                    Транспортні витрати пошти (прибл 45-50 грн.) + комісія за повернення грошей (10 грн + 1% від суми)
-                    <br>
-                    – Недоліки: додаткові витрати на зворотну відправку грошей
-                    <br>
-                    – Переваги: Оплата замовлення у відділенні, після перевірки посилки
+                    Доступна доставка по Україні — від 45 грн
                 </div>
             </div>
         </section>
@@ -162,8 +158,8 @@
                             </a>
                         </div>
                         <div class="contacts">
-                            <a href="https://www.youtube.com/@vita_trayno" style="display: flex; flex-direction: column; align-items: center;">
-                                <img src="../static/images/youtube.svg" width="50px" />
+                            <a href="https://www.tiktok.com/@natalia_davyskyba?_t=ZS-8wZhJ81Sqif&_r=1" style="display: flex; flex-direction: column; align-items: center;">
+                                <img src="../static/images/tiktok_logo.svg" width="50px" />
                                 <div>
                                     Вита Трайно
                                 </div>
@@ -205,11 +201,15 @@
             </div>
         </section>
     </div>
+    <div id="success-toast" class="toast-success hidden">
+        Повідомлення надіслано!
+    </div>
     {% include 'footer.html' %}
     <script src="{{ url_for('static', filename='scripts/checkLists.js') }}"></script>
     <script src="../static/scripts/header.js"></script>
     <script src="../static/scripts/categories.js"></script>
     <script src="../static/scripts/script.js"></script>
+    <script src="../static/scripts/success_message.js"></script>
 </body>
 
 </html>

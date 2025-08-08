@@ -22,19 +22,25 @@
 <main style="min-height: calc(100vh - 80px);">
     <section class="product-section">
         <div class="product-conf col-1">
+            <form method="GET" action="{% if category_slug %}/products/category/{{ category_slug }}{% elif m_name %}/products/manufacturer/{{ m_name }}{% elif c_name %}/products/coutnry/{{ c_name }}{% endif %}" style="background: none;
+                box-shadow: none;
+                border: none;
+                padding: 0;
+                margin: 0;
+                display: inline-block;">
             <div class="conf-wrapper">
                 <div class="bar-title">
-                    Сортувати за
+                Сортувати за
                 </div>
-                <select class="sort-select">
-                    <option value="">За змовчуванням</option>
-                    <option value="expensive">Ціною (від дорожчого до дешевшого)</option>
-                    <option value="cheap">Ціною (від дешевшого до дорожчого)</option>
-                    <option value="abc">Алфавітом (від А до Я)</option>
-                    <option value="xyz">Алфавітом (від Я до А)</option>
-                    
+                <select class="sort-select" name="sort" onchange="this.form.submit()">
+                <option value="" {% if sort == "" %}selected{% endif %}>За змовчуванням</option>
+                <option value="expensive" {% if sort == "expensive" %}selected{% endif %}>Ціною (від дорожчого до дешевшого)</option>
+                <option value="cheap" {% if sort == "cheap" %}selected{% endif %}>Ціною (від дешевшого до дорожчого)</option>
+                <option value="abc" {% if sort == "abc" %}selected{% endif %}>Алфавітом (від А до Я)</option>
+                <option value="xyz" {% if sort == "xyz" %}selected{% endif %}>Алфавітом (від Я до А)</option>
                 </select>
             </div>
+            </form>
             <div class="conf-wrapper">
                 <div id="cats" class="bar-title bar-name">
                     Категорії
