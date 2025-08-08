@@ -15,6 +15,8 @@ def get_products_by_category(slug: str, sort: str = "default"):
 
         query = select(Product).filter(Product.category_id == category.id).options(joinedload(Product.category))
 
+        active_first = (Product.status == 'active').desc()
+
         if sort == "cheap":
             query = query.order_by(Product.price.asc())
         elif sort == "expensive":
@@ -23,6 +25,8 @@ def get_products_by_category(slug: str, sort: str = "default"):
             query = query.order_by(Product.name.asc())
         elif sort == "xyz":
             query = query.order_by(Product.name.desc())
+
+        query = query.order_by(active_first)
 
         products_list_by_category = session.execute(query).scalars().all()
         
@@ -40,6 +44,8 @@ def get_products_by_info_below(country_slug: str = None, manufacturer_slug: str 
         if country_slug:
             get_products_list = select(Product).filter(Product.country_slug==country_slug).options(joinedload(Product.category))
 
+        active_first = (Product.status == 'active').desc()
+
         if sort == "cheap":
             get_products_list = get_products_list.order_by(Product.price.asc())
         elif sort == "expensive":
@@ -48,11 +54,12 @@ def get_products_by_info_below(country_slug: str = None, manufacturer_slug: str 
             get_products_list = get_products_list.order_by(Product.name.asc())
         elif sort == "xyz":
             get_products_list = get_products_list.order_by(Product.name.desc())
+
+        get_products_list = get_products_list.order_by(active_first)
         
         products_list = session.execute(get_products_list).scalars().all()
 
-
-        return products_list
+    return products_list
 
 
 def get_product(product_id: int):
