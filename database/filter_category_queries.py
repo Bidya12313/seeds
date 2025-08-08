@@ -76,17 +76,52 @@ def get_product(product_id: int):
 
 
 def get_similar_products(product: Product, limit: int = 12):
-    first_word = product.name.split()[0]
+    if not product.name:
+        return []
+
+    words = product.name.split()
+    name_keys = [w for w in words if len(w) > 2]
 
     with session_factory() as session:
+        conditions = []
+        for key in name_keys:
+            conditions.append(Product.name.ilike(f"%{key}%"))
+
+        if conditions:
+            query = (
+                select(Product)
+                .where(Product.id != product.id)
+                .where(Product.category_id == product.category_id)
+                .where(or_(*conditions))
+                .filter(Product.status == 'active')
+                .options(joinedload(Product.category))
+                .limit(limit)
+            )
+            results = session.execute(query).scalars().all()
+            if results:
+                return results
+
         query = (
             select(Product)
-            .where(Product.category_id == product.category_id)
             .where(Product.id != product.id)
-            .where(Product.name.ilike(f"%{first_word}%"))
+            .where(Product.category_id == product.category_id)
+            .filter(Product.status == 'active')
+            .options(joinedload(Product.category))
             .limit(limit)
-        ).options(joinedload(Product.category))
-    return session.execute(query).scalars().all()
+        )
+        results = session.execute(query).scalars().all()
+        if results:
+            return results
+
+        query = (
+            select(Product)
+            .filter(Product.status == 'active')
+            .order_by(func.random())
+            .limit(limit)
+            .options(joinedload(Product.category))
+        )
+        results = session.execute(query).scalars().all()
+    return results
 
 
 def get_similar_products_to_cart_and_wishlist(product_list: list[int], limit: int = 20):
@@ -137,4 +172,4 @@ def get_similar_products_to_cart_and_wishlist(product_list: list[int], limit: in
         results = session.execute(query).scalars().all()
 
         unique = {product.id: product for product in results}.values()
-        return list(unique)
+    return list(unique)

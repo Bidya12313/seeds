@@ -44,7 +44,7 @@ class Product(Base):
     status: Mapped[str] = mapped_column(String(50), nullable=True, default="active")
     country: Mapped[str] = mapped_column(String(100), nullable=True)
     country_slug: Mapped[str] = mapped_column(String(100), nullable=True)
-    quantity: Mapped[int] = mapped_column(default=0)
+    quantity: Mapped[str] = mapped_column(String(100))
     dosage: Mapped[str] = mapped_column(String(100), default="0", nullable=True)
 
 

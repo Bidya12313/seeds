@@ -63,14 +63,6 @@
                 </div>
                 <div class="product-desc">
                     {{ product.description }}
-                    <!-- кількість в упаковці: 10 шт
-                    <br>
-                    Арктика-ідеальний для маринування ультраранній (33-38 днів) партенокарпічний гібрид.
-                    <br>
-                    Рослина потужна, з добре розвиненим листовим апаратом. Плоди циліндричні, однорідні, вирівняні,
-                    довжиною 9-10 см, діаметром 3-3,5 см. Прекрасно поміщається в літрові банки для консервування.
-                    <br>
-                    Гібрид плодоносить в стресових умовах спекотного літа. -->
                 </div>
                 <div class="one-line product-set">
                     <div class="product-quantity">
@@ -116,7 +108,7 @@
                     Кількість в упаковці
                 </div>
                 <div>
-                    <a href="/products/quantity/{{ product.quantity }}">{{ product.quantity }}</a>
+                    {{ product.quantity }}
                 </div>
                 {% endif %}
                 <div>
@@ -138,7 +130,7 @@
                     Дозування
                 </div>
                 <div>
-                    <a href="/products/dosage/{{ product.dosage }}">{{ product.dosage }}</a>
+                    {{ product.dosage }}
                 </div>
                 {% endif %}
             </div>
