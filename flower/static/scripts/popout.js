@@ -20,7 +20,7 @@ function updatePopout() {
             <tr id="row-${item.name}">
             <td style="border:none">
             <button id="${
-              item.name
+              item.id
             }"  class="popout-delete" onclick="deletePopoutRow(this)">
             <img src="${deleteIconUrl}" width="30px"/>
             </button>
@@ -31,7 +31,7 @@ function updatePopout() {
             </a>
             </td>
             <td style="border:none">
-            <a href="products/${item.id}">
+            <a href="/products/${item.id}">
             ${item.name}
             </a>
             </td>
@@ -50,7 +50,7 @@ function updatePopout() {
 updatePopout();
 
 function deletePopoutRow(button) {
-  basketItems = basketItems.filter((item) => item.name != button.id);
+  basketItems = basketItems.filter((item) => item.id != button.id);
   if(basketItems.length === 0){
     document.getElementById("popout").style.display = "none";
   }

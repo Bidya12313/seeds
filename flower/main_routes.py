@@ -26,11 +26,6 @@ def main():
     return render_template("index.html", all_reviews=all_reviews)
 
 
-@main_routes.route('/contacts')
-def contacts():
-    return render_template("index.html")
-
-
 @main_routes.route('/garantee')
 def garantee():
     return render_template("garantee.html")
@@ -57,31 +52,33 @@ def categories():
 def category_products(category_slug):
     sort = request.args.get("sort", "")
     manufacturers = get_manufacturers()
-    produtcs = get_products_by_category(category_slug, sort)
-    return render_template("products.html", category_slug=category_slug, products=produtcs, manufacturers=manufacturers, sort=sort)
+    produtcs, category = get_products_by_category(category_slug, sort)
+    title = f'{category} - MeloFlora'
+    return render_template("products.html", title=title, category_slug=category_slug, products=produtcs, manufacturers=manufacturers, sort=sort)
 
 
 @main_routes.route('/products/manufacturer/<m_name>')
 def products_by_manufacturer(m_name: str):
     sort = request.args.get("sort", "")
     manufacturers = get_manufacturers()
-    products = get_products_by_info_below(manufacturer_slug=m_name, sort=sort)
-    return render_template("products.html", products=products, manufacturers=manufacturers, sort=sort)
+    products, title = get_products_by_info_below(manufacturer_slug=m_name, sort=sort)
+    return render_template("products.html", title=title, products=products, manufacturers=manufacturers, sort=sort)
 
 
 @main_routes.route('/products/country/<c_name>')
 def products_by_country(c_name: str):
     sort = request.args.get("sort", "")
     manufacturers = get_manufacturers()
-    products = get_products_by_info_below(country_slug=c_name, sort=sort)
-    return render_template("products.html", products=products, manufacturers=manufacturers, sort=sort)
+    products, title = get_products_by_info_below(country_slug=c_name, sort=sort)
+    return render_template("products.html", title=title, products=products, manufacturers=manufacturers, sort=sort)
 
 
 @main_routes.route('/products/<int:product_id>')
 def product_page(product_id):
     product, category_name, manufacturer = get_product(product_id)
+    title = f'{product.name} - MeloFlora'
     similar_products = get_similar_products(product)
-    return render_template("productpage.html", product=product, category_name=category_name, manufacturer=manufacturer, similar_products=similar_products)
+    return render_template("productpage.html", title=title, product=product, category_name=category_name, manufacturer=manufacturer, similar_products=similar_products)
 
 
 @main_routes.route('/wishlist', methods=["GET", "POST"])

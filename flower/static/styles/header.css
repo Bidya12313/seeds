@@ -23,6 +23,7 @@
   
   .logo {
     width: 300px;
+    background: transparent;
   }
   
   .cart-container {
@@ -151,6 +152,7 @@
   @media (max-width: 1000px){
   .logo{
     width: 250px;
+    background: transparent;
   }
 }
   @media (max-width: 950px){
@@ -230,5 +232,6 @@
   @media (max-width: 400px){
   .logo{
     width: 150px;
+    background: transparent;
   }
 }

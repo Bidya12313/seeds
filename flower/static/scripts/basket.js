@@ -44,7 +44,7 @@ function updateBasket() {
         <tr id="row-${item.name}">
         <td>
         <button id="${
-          item.name
+          item.id
         }"  class="delete-item" onclick="deleteRow(this)">
         
         <img src="../static/images/material-symbols_delete-outline.svg" width="30px"/>
@@ -109,7 +109,7 @@ container.addEventListener("click", (e) => {
 });
 
 function deleteRow(button) {
-  basketItems = basketItems.filter((item) => item.name != button.id);
+  basketItems = basketItems.filter((item) => item.id != button.id);
   localStorage.setItem("basket", JSON.stringify(basketItems));
   button.closest("tr").remove();
   updateBasket();

@@ -71,20 +71,12 @@ let category = params.get("category");
 cat_arr.forEach((item) => {
   if (item.name === category) {
     document.getElementById("category-list").innerHTML += `
-<<<<<<< HEAD
                             <a href="/products/category/${item.slug}"><li id="${item.name}" class="categories chosen">
-=======
-                            <a href="/products?category=${item.slug}"><li id="${item.name}" class="categories chosen">
->>>>>>> 6c0a2118758fbba78508b9ab5c9b6f0b2cf83eb9
                             ${item.name} →
                         </li></a>`;
   } else {
     document.getElementById("category-list").innerHTML += `
-<<<<<<< HEAD
                             <a href="/products/category/${item.slug}"><li id="${item.name}" class="categories">
-=======
-                            <a href="/products?category=${item.slug}"><li id="${item.name}" class="categories">
->>>>>>> 6c0a2118758fbba78508b9ab5c9b6f0b2cf83eb9
                             ${item.name} →
                         </li></a>`;
   }

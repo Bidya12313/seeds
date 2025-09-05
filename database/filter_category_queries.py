@@ -30,7 +30,7 @@ def get_products_by_category(slug: str, sort: str = "default"):
 
         products_list_by_category = session.execute(query).scalars().all()
         
-    return products_list_by_category
+    return products_list_by_category, category.name
 
 
 
@@ -40,9 +40,12 @@ def get_products_by_info_below(country_slug: str = None, manufacturer_slug: str 
             get_manufacturer = select(Manufacturer).filter(Manufacturer.slug==manufacturer_slug)
             manufacturer = session.execute(get_manufacturer).scalars().first()
             get_products_list = select(Product).filter(Product.manufacturer_id==manufacturer.id).options(joinedload(Product.category))
+            title = f'{manufacturer.name} - MeloFlora'
             
         if country_slug:
             get_products_list = select(Product).filter(Product.country_slug==country_slug).options(joinedload(Product.category))
+            country_name = session.execute(select(Product.country).filter(Product.country_slug == country_slug).limit(1)).scalar_one_or_none()
+            title = f'{country_name} - MeloFlora'
 
         active_first = (Product.status == 'active').desc()
 
@@ -59,7 +62,7 @@ def get_products_by_info_below(country_slug: str = None, manufacturer_slug: str 
         
         products_list = session.execute(get_products_list).scalars().all()
 
-    return products_list
+    return products_list, title
 
 
 def get_product(product_id: int):
