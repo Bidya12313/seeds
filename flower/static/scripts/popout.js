@@ -26,7 +26,7 @@ function updatePopout() {
             </button>
             </td>
             <td style="border:none">
-            <a href="products/${item.id}">
+            <a href="/products/${item.id}">
             <img src="/static/images/products/${item.image}" width="50px"/>
             </a>
             </td>
